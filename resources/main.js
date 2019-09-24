@@ -35,11 +35,23 @@
 // var toProjection = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
 // var extent = new OpenLayers.Bounds(-1.32,51.71,-1.18,51.80).transform(fromProjection,toProjection);
 
-var data = {"0" : {name: "name0", imgUrl: "resources/cinema0.jpg", longitude:-0.1279688, latitude:51.5077286}, 
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
+const numOfLevels = 3
+const data = {"0" : {name: "name0", imgUrl: "resources/cinema0.jpg", longitude:-0.1279688, latitude:51.5077286}, 
             "1" : {name: "name1", imgUrl: "resources/cinema1.jpg", longitude:-0.1280000, latitude:51.5050000},
             "2" : {name: "name2", imgUrl: "resources/cinema2.jpg", longitude:-0.1290000, latitude:51.5060000}
 }
-
+const numOfCinemas = Object.keys(data).length
 
 function markerOnClick(id) {
     id_int = parseInt(id)
@@ -88,18 +100,37 @@ var center = new OpenLayers.LonLat(data["0"].longitude, data["0"].latitude)
         new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
         map.getProjectionObject() // to Spherical Mercator Projection
     );
-map.setCenter(center, zoom);  
+
+map.setCenter(center, zoom); 
+
+function map_init(){
+    map.setCenter(center, zoom);
+
+    for(var i = 0; i < map.layers[1].markers.length; i++)
+    {
+        map.layers[1].markers[i].icon.setUrl("resources/marker_inactive.png")
+    } 
+}
+
+function get_levels(){
+    cinemaOrder = [...Array(numOfCinemas).keys()]
+    shuffle(cinemaOrder)
+    cinemaOrder = cinemaOrder.slice(0, numOfLevels)
+}
+
+function update_question(){
+    questionId.innerHTML='Where is the cinema '.concat(data[cinemaOrder[level].toString()].name).concat(' located?')
+}
 
 //////////////////////////////////////////////////////////////////////////////////
 
-icon1 = new OpenLayers.Icon('resources/images.png', new OpenLayers.Size(50,50))
-icon2 = new OpenLayers.Icon('resources/cinema-512.png', new OpenLayers.Size(50,50))
-
 const startButton = document.getElementById('startButton');
+const exitButton = document.getElementById('exitButton');
 const confirmButton = document.getElementById('confirmButton');
 const startPage = document.getElementById('startPage');
 const quizPage = document.getElementById('quizPage');
 const textSelection = document.getElementById('textSelection');
+const questionId = document.getElementById('questionId');
 
 var level = 0
 
@@ -107,7 +138,31 @@ startButton.addEventListener('click', (event) => {
     startPage.style.display = 'none';
     quizPage.style.display = 'block';
     nickname = document.getElementById("inputNickname").value
+
+    get_levels()
+    update_question()
+
     level ++;
 });
 
+exitButton.addEventListener('click', (event) => {
+    startPage.style.display = 'block';
+    quizPage.style.display = 'none';
+    nickname = "";
+    level = 0;
+    confirmButton.disabled = true;
+    textSelection.innerHTML = '';
+
+    map_init();
+});
+
+confirmButton.addEventListener('click', (event) => {
+    confirmButton.disabled = true;
+    textSelection.innerHTML = '';
+    
+    map_init();
+    update_question()
+
+    level ++;
+});
 

@@ -23,7 +23,7 @@
 
         <div id="paneContainer" style="width:49%; height:100%; float:left;">
 
-            <div id="startPage" style="text-align:center; padding-top:40%;">
+            <div id="startPage" style="text-align:center; padding-top:40%; display:block">
                 <div style="width:100%; display:flex; align-items:center; justify-content:center">
                     <div class="md-form form-lg" style="width:30%">
                         <input type="text" id="inputNickname" class="form-control form-control-lg">
@@ -38,11 +38,15 @@
                 </div>
             </div>
 
-            <div id="quizPage" style="text-align:center; padding-top:40%; display:none;">
-                <p>Where is the cinema located?</p>   
-                <p id="textSelection" style="height: 30px;"></p>   
-
-                <button id="confirmButton" type="button" class="btn btn-primary" disabled>Confirm Selection</button>
+            <div id="quizPage" style="display:none;">
+                <div style="float:right">
+                    <a id="exitButton"><i class="far fa-times-circle" style="font-size: 2em; padding-top: 15px"></i></a>
+                </div>
+                <div style="text-align:center; padding-top:40%">
+                    <p id="questionId"></p>   
+                    <p id="textSelection" style="height: 30px;"></p>   
+                    <button id="confirmButton" type="button" class="btn btn-primary" disabled>Confirm Selection</button>
+                </div>
             </div>
 
         </div>

@@ -103,7 +103,7 @@ var center = new OpenLayers.LonLat(data["0"].longitude, data["0"].latitude)
 
 map.setCenter(center, zoom); 
 
-function map_init(){
+function map_init() {
     map.setCenter(center, zoom);
 
     for(var i = 0; i < map.layers[1].markers.length; i++)
@@ -112,10 +112,16 @@ function map_init(){
     } 
 }
 
-function get_levels(){
+function get_levels() {
     cinemaOrder = [...Array(numOfCinemas).keys()]
     shuffle(cinemaOrder)
     cinemaOrder = cinemaOrder.slice(0, numOfLevels)
+
+    answers = {}
+    for(var i = 0; i < cinemaOrder.length; i++)
+    {
+        answers[cinemaOrder[i]] = 'without'
+    }
 }
 
 function update_question(){
@@ -131,13 +137,14 @@ const startPage = document.getElementById('startPage');
 const quizPage = document.getElementById('quizPage');
 const textSelection = document.getElementById('textSelection');
 const questionId = document.getElementById('questionId');
+const inputNickname = document.getElementById("inputNickname")
 
 var level = 0
 
 startButton.addEventListener('click', (event) => {
     startPage.style.display = 'none';
     quizPage.style.display = 'block';
-    nickname = document.getElementById("inputNickname").value
+    nickname = inputNickname.value
 
     get_levels()
     update_question()
@@ -152,6 +159,7 @@ exitButton.addEventListener('click', (event) => {
     level = 0;
     confirmButton.disabled = true;
     textSelection.innerHTML = '';
+    inputNickname.value = '';
 
     map_init();
 });

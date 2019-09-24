@@ -1,1 +1,1 @@
-# slepa_mapa
+# blind map

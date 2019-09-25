@@ -20,6 +20,10 @@
 
         <div id="paneContainer" style="width:49%; height:100%; float:left;">
 
+            <div style="float:right;">
+                <a><i id="exitButton" class="far fa-times-circle" style="font-size: 2em; padding-top: 15px; visibility: hidden;"></i></a>
+            </div>
+
             <div id="startPage" style="text-align:center; padding-top:40%; display:block">
                 <div style="width:100%; display:flex; align-items:center; justify-content:center">
                     <div class="md-form form-lg">
@@ -36,9 +40,6 @@
             </div>
 
             <div id="quizPage" style="display:none;">
-                <div style="float:right">
-                    <a id="exitButton"><i class="far fa-times-circle" style="font-size: 2em; padding-top: 15px"></i></a>
-                </div>
                 <div style="text-align:center; padding-top:40%">
                     <p id="questionId"></p>
                     <div><img id="questionImg" src=""></div>
@@ -52,6 +53,19 @@
 
             <div id="endPage" style="display:none;">
                 <p id="totalResultText"></p>
+                <div style="height:500px;overflow:auto;">
+                    <table id="myTable" class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Nickname</th>
+                          <th scope="col">Points</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -59,47 +73,4 @@
         <script type="text/javascript" src="resources/main.js"></script>
 
     </body>
-
-
-
-    <!-- <body>
-        <div id="demoMap" style="height:500px;width:500px"></div>
-        <script src="resources/OpenLayers-2.13.1/OpenLayers.js"></script>
-        <script>
-            map = new OpenLayers.Map("demoMap");
-            map.addLayer(new OpenLayers.Layer.OSM());
-            map.zoomToMaxExtent();
-        </script>
-
-        <form>
-        <p>
-            <label for="togglefill">Toggle the circle's fill:</label>
-            <input type="checkbox" name="togglefill" id="togglefill" checked>
-        </p>
-        </form>
-
-        <div class="wrapper">
-        <svg width="350" height="350" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <title>circle within a link</title>
-        <circle stroke="#88CDD5" fill="#D79CFD" stroke-width="30" cx="160" cy="160" r="140" cursor="pointer"></circle>
-        </svg>
-
-        <div class="display-panel">
-        <button type="button">Reset the ouput</button>
-        <pre id="output"></pre>
-        </div>
-        </div>
-
-        <svg version="1.1" id="Layer_1" xmlns="https://www.w3.org/2000/svg"
-        xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px" width="500" height="500" viewBox="0 0 500 500" style="background-color: red">
-            <image xlink:href="resources/Airplane.svg" height="300" width="300" id="img1"/>
-        </svg> -->
-
-
-
-        <!-- <object type="image/svg+xml" data="resources/Airplane.svg">
-            Your browser does not support SVG
-        </object>
-
-    </body> -->
 </html>

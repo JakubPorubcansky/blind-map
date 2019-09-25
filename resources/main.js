@@ -17,8 +17,16 @@ var display = displayStates[0]
 
 ///////////////////////
 
-map = new OpenLayers.Map("mapdiv");
-map.addLayer(new OpenLayers.Layer.OSM());
+var fromProjection = new OpenLayers.Projection("EPSG:4326"); // transform from WGS 1984
+var toProjection = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+var extent = new OpenLayers.Bounds( -0.131, 51.5032000, -0.1279688, 51.5077286).transform(fromProjection, toProjection);
+var options = {restrictedExtent: extent};
+
+map = new OpenLayers.Map("mapdiv", options);
+
+map.addLayer(new OpenLayers.Layer.OSM())
+// ("NewLayer", "",
+    // {zoomOffset: 13, resolutions: [19.1092570678711,9.55462853393555,4.77731426696777,2.38865713348389]}));
 
 var markers = new OpenLayers.Layer.Markers("Markers");
 map.addLayer(markers);
@@ -26,8 +34,8 @@ map.addLayer(markers);
 for(var key in data){
     var lonLat = new OpenLayers.LonLat(data[key].longitude, data[key].latitude)
     .transform(
-        new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-        map.getProjectionObject() // to Spherical Mercator Projection
+        fromProjection,
+        toProjection
     );
     var marker = new OpenLayers.Marker(lonLat, new OpenLayers.Icon('resources/marker_inactive.png', new OpenLayers.Size(50,50)));
     marker.id = key;
@@ -49,7 +57,8 @@ var center = centerLatLon
         map.getProjectionObject() // to Spherical Mercator Projection
     );
 
-map.setCenter(center, zoom);
+// map.setCenter(center, zoom);
+map.zoomToExtent(extent);
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +74,7 @@ const questionResult = document.getElementById('questionResult');
 const questionId = document.getElementById('questionId');
 const totalResultText = document.getElementById('totalResultText');
 const inputNickname = document.getElementById("inputLGEx")
+const table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
 
 startButton.addEventListener('click', (event) => {
     display = displayStates[1]
@@ -76,6 +86,7 @@ startButton.addEventListener('click', (event) => {
     nextButton.style.display = 'none'
     textSelection.innerHTML = '';
     questionResult.innerHTML = ''
+    exitButton.style.visibility = "visible";
 
     nickname = inputNickname.value
 
@@ -125,6 +136,15 @@ nextButton.addEventListener('click', (event) => {
             .concat(total_res.toString()).concat()
         totalResultText.innerHTML = 'Congratulations '.concat(inputNickname.value, '. Your result: ', total_res.toString(),
             ' points out of ', numOfLevels, '.')
+
+        var row = table.insertRow(0);
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+
+        cell0.innerHTML = table.getElementsByTagName("tr").length;
+        cell1.innerHTML = inputNickname.value;
+        cell2.innerHTML = total_res;
 
         redraw_markers('some');
     }

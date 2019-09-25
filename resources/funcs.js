@@ -30,7 +30,8 @@ function markerOnClick(id) {
 }
 
 function init_center() {
-    map.setCenter(center, zoom);
+    // map.setCenter(center, zoom);
+    map.zoomToExtent(extent);
 }
 
 function redraw_markers(p) {

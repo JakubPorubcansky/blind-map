@@ -22,18 +22,16 @@
 
             <div id="startPage" style="text-align:center; padding-top:40%; display:block">
                 <div style="width:100%; display:flex; align-items:center; justify-content:center">
-                    <!-- <div class="md-form form-lg" style="width:30%">
-                        <input type="text" id="inputNickname" class="form-control form-control-lg">
-                        <label for="inputLGEx">Nickname</label>
-                    </div> -->
-                    <input style="width:30%" class="form-control form-control-lg" type="text" id="inputNickname" placeholder="Enter your name">
-
+                    <div class="md-form form-lg">
+                      <input type="text" id="inputLGEx" class="form-control form-control-lg">
+                      <label for="inputLGEx">Enter nickname</label>
+                    </div>
+                    <!-- <input style="width:30%" class="form-control form-control-lg" type="text" id="inputNickname" placeholder="Enter your name"> -->
                 </div>
 
-
-
                 <div style="width:100%;">
-                    <button id="startButton" type="button" class="btn btn-primary"><i class="fas fa-video" aria-hidden="true" style="padding-right: 10px;"></i>Start</button>
+                    <!-- <button id="startButton" type="button" class="btn btn-dark"><i class="fas fa-video" aria-hidden="true" style="padding-right: 10px;"></i>Start</button> -->
+                    <button id="startButton" type="button" class="btn btn-dark">Start</button>
                 </div>
             </div>
 
@@ -45,13 +43,16 @@
                     <p id="questionId"></p>
                     <div><img id="questionImg" src=""></div>
                     <p id="textSelection" style="height: 30px;"></p>
-                    <button id="confirmButton" type="button" class="btn btn-primary" disabled>Confirm Selection</button>
+                    <button id="confirmButton" type="button" class="btn btn-dark" disabled>Confirm Selection</button>
 
                     <p id="questionResult"></p>
-                    <button id="nextButton" type="button" class="btn btn-primary" style="display:none">Continue</button>
+                    <button id="nextButton" type="button" class="btn btn-dark" style="display:none">Continue</button>
                 </div>
             </div>
 
+            <div id="endPage" style="display:none;">
+                <p id="totalResultText"></p>
+            </div>
         </div>
 
         <script type="text/javascript" src="resources/funcs.js"></script>

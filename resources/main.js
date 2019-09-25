@@ -7,10 +7,13 @@ const data = {"0" : {name: "name0", imgUrl: "resources/cinema0.jpg", longitude:-
 }
 const numOfCinemas = Object.keys(data).length
 const centerLatLon = new OpenLayers.LonLat(data["0"].longitude, data["0"].latitude)
+const displayStates = {0:'start', 1:'question', 2:'result', 3:'total'}
+const markerStates = {0:'without', 1:'true', 2:'false'}
 
 var totalPoints = 0;
 var level = 0;
 var zoom = 16;
+var display = displayStates[0]
 
 ///////////////////////
 
@@ -56,17 +59,25 @@ const confirmButton = document.getElementById('confirmButton');
 const nextButton = document.getElementById('nextButton');
 const startPage = document.getElementById('startPage');
 const quizPage = document.getElementById('quizPage');
+const endPage = document.getElementById('endPage');
 const textSelection = document.getElementById('textSelection');
 const questionResult = document.getElementById('questionResult');
 const questionId = document.getElementById('questionId');
-const inputNickname = document.getElementById("inputNickname")
+const totalResultText = document.getElementById('totalResultText');
+const inputNickname = document.getElementById("inputLGEx")
 
 startButton.addEventListener('click', (event) => {
+    display = displayStates[1]
+
     startPage.style.display = 'none';
     quizPage.style.display = 'block';
-    nickname = inputNickname.value
+    confirmButton.style.display = 'inline-block';
+    confirmButton.disabled = true;
+    nextButton.style.display = 'none'
+    textSelection.innerHTML = '';
+    questionResult.innerHTML = ''
 
-    console.log(nickname)
+    nickname = inputNickname.value
 
     get_levels()
     update_question()
@@ -75,13 +86,13 @@ startButton.addEventListener('click', (event) => {
 });
 
 exitButton.addEventListener('click', (event) => {
+    display = displayStates[0]
+
     startPage.style.display = 'block';
     quizPage.style.display = 'none';
-    confirmButton.style.display = 'inline-block';
-    nickname = "";
+    endPage.style.display = 'none';
     level = 0;
-    confirmButton.disabled = true;
-    textSelection.innerHTML = '';
+
     inputNickname.value = '';
 
     init_center();
@@ -89,6 +100,8 @@ exitButton.addEventListener('click', (event) => {
 });
 
 confirmButton.addEventListener('click', (event) => {
+    display = displayStates[2]
+
     confirmButton.style.display = 'none';
     nextButton.style.display = 'inline-block'
     textSelection.innerHTML = '';
@@ -100,11 +113,32 @@ confirmButton.addEventListener('click', (event) => {
 });
 
 nextButton.addEventListener('click', (event) => {
-    confirmButton.style.display = 'inline-block';
-    nextButton.style.display = 'none'
-    questionResult.innerHTML = ''
+    if (cinemaOrder.length == level)
+    {
+        display = displayStates[3]
 
-    redraw_markers('some');
-    update_question();
-    level ++;
+        quizPage.style.display = 'none';
+        endPage.style.display = 'block';
+
+        total_res = get_total_result()
+        totalResultText.innerHTML = 'Congratulations '.concat(inputNickname.value).concat('. Your result: ')
+            .concat(total_res.toString()).concat()
+        totalResultText.innerHTML = 'Congratulations '.concat(inputNickname.value, '. Your result: ', total_res.toString(),
+            ' points out of ', numOfLevels, '.')
+
+        redraw_markers('some');
+    }
+    else
+    {
+        display = displayStates[1]
+
+        confirmButton.style.display = 'inline-block';
+        confirmButton.disabled = true;
+        nextButton.style.display = 'none'
+        questionResult.innerHTML = ''
+
+        redraw_markers('some');
+        update_question();
+        level ++;
+    }
 });

@@ -74,6 +74,8 @@ const backButton = document.getElementById('backButton');
 const startPage = document.getElementById('startPage');
 const quizPage = document.getElementById('quizPage');
 const endPage = document.getElementById('endPage');
+const endImg = document.getElementById('endImg');
+const endInfo = document.getElementById('endInfo');
 const questionResult = document.getElementById('questionResult');
 const questionId = document.getElementById('questionId');
 const totalResultText = document.getElementById('totalResultText');
@@ -106,6 +108,9 @@ exitButton.addEventListener('click', (event) => {
     quizPage.style.display = 'none';
     endPage.style.display = 'none';
     exitButton.style.visibility = "hidden";
+    endInfo.innerHTML = ''
+    endImg.src = ""
+    
     level = 0;
 
     inputNickname.value = '';

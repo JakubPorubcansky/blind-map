@@ -19,7 +19,7 @@
 
         <style media="screen">
             #bg {
-                background-image: url("resources/img/bcg.png");
+                background-image: url("resources/img/bcg2.png");
                 height: 100%;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -36,6 +36,8 @@
             table.dataTable thead tr {
               background-color: lightgrey;
             }
+
+
 
             table.dataTable td.sorting_1{ background-color: rgba(255,255,255,0.3); border:1px lightgrey; }
             table.dataTable td{ background-color: rgba(255,255,255,0.3);  border:1px lightgrey;}
@@ -56,14 +58,17 @@
                 <a><i id="exitButton" class="far fa-times-circle" style="font-size: 2em; visibility: hidden;"></i></a>
             </div>
 
-            <div id="startPage" style="text-align:center; display:block; box-shadow: 0 0 20px; background-color: rgba(100,100,100,0.9); margin: 30% 25% 30% 25%; height:39%;">
+            <div id="startPage" style="text-align:center; display:block; box-shadow: 0 0 5px; background-color: rgba(100,100,100,0.5); margin: 30% 25% 30% 25%; height:39%;">
+                <!-- <div id="startTitle" style='font-size:2.9rem; position:relative; bottom:10%; font-weight:500'>
+                    <p>NADPIS</p>
+                </div> -->
                 <div class="md-form form-lg" style="margin: 30% 20% 0 20%; float:left; width:60%">
                     <input type="text" id="inputLGEx" class="form-control form-control-lg">
-                    <label for="inputLGEx">Enter nickname</label>
+                    <label for="inputLGEx" style="color:white">Enter nickname</label>
                 </div>
                     <!-- <input style="width:30%" class="form-control form-control-lg" type="text" id="inputNickname" placeholder="Enter your name"> -->
 
-                <div style="width:100%; float:left; margin-top:15%;">
+                <div style="width:100%; float:left; margin-top:21%;">
                     <!-- <button id="startButton" type="button" class="btn btn-dark"><i class="fas fa-video" aria-hidden="true" style="padding-right: 10px;"></i>Start</button> -->
                     <button id="startButton" type="button" class="btn btn-dark">Start</button>
                 </div>
@@ -75,7 +80,7 @@
                         <p id="questionId" style="font-size:2rem"></p>
                     </div>
                     <div style="width: 100%; height:55%;">
-                        <img id="questionImg" src="">
+                        <img id="questionImg" src="" style="max-width:100%;max-height:100%;height:auto;">
                     </div>
                     <div style="width:100%; height:10%; font-size:2rem">
                         <p id="questionResult" style="height: 30px;"></p>
@@ -187,12 +192,11 @@
                     <div style="width:100%; height:20%">
                         <p>Feel free to explore the map further</p>
                     </div>
-                    <div style="width:100%; height:80%; display:inline-block;">
-                        <div id="endImg" style="width:37%; height:100%; float:left; margin-left:10%">
-
+                    <div style="width:100%; height:80%; display:inline-block; padding-top:5%;">
+                        <div style="width:37%; height:100%; float:left; margin-left:10%">
+                            <img id="endImg" src="", style="max-width:100%;max-height:100%;height:auto;">
                         </div>
-                        <div id="endInfo" style="width: 42%; height:100%; float:right; margin-right:5%">
-
+                        <div id="endInfo" style="text-align:left; font-size: 1.5rem; width: 42%; height:100%; float:right; margin-right:5%">
                         </div>
                     </div>
 

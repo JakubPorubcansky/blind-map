@@ -29,7 +29,8 @@ function markerOnClick(id) {
     }
     if(display == displayStates[3])
     {
-        
+        endInfo.innerHTML = 'this is '.concat(data[id].name)
+        endImg.src = data[id].imgUrl
     }
 }
 

@@ -15,7 +15,7 @@ function markerOnClick(id) {
     if(level > 0 && answers[id_marker_sel] == markerStates[0] && display == displayStates[1])
     {
         confirmButton.disabled = false;
-        textSelection.innerHTML = "You have selected ".concat(data[id].name).concat(" cinema")
+        // textSelection.innerHTML = "You have selected ".concat(data[id].name).concat(" cinema")
 
         map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_active.png")
 
@@ -26,6 +26,10 @@ function markerOnClick(id) {
                 map.layers[1].markers[i].icon.setUrl("resources/img/marker_inactive.png")
             }
         }
+    }
+    if(display == displayStates[3])
+    {
+        
     }
 }
 
@@ -70,12 +74,14 @@ function make_result(){
         success = true
         map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_green.png")
         answers[id_marker_sel] = markerStates[1]
+        questionResult.innerHTML = "Success!"
     }
     else
     {
         map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_red.png")
         map.layers[1].markers[cinemaOrder[level - 1]].icon.setUrl("resources/img/marker_yellow.png")
         answers[cinemaOrder[level - 1]] = markerStates[2]
+        questionResult.innerHTML = "You have selected ".concat(data[id_marker_sel].name).concat(" cinema")
     }
 }
 

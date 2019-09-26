@@ -1,9 +1,9 @@
-const numOfLevels = 3
-const data = {"0" : {name: "name0", imgUrl: "resources/img/cinema0.jpg", longitude:-0.1279688, latitude:51.5077286},
-              "1" : {name: "name1", imgUrl: "resources/img/cinema1.jpg", longitude:-0.1280000, latitude:51.5050000},
-              "2" : {name: "name2", imgUrl: "resources/img/cinema2.jpg", longitude:-0.1290000, latitude:51.5060000},
-              "3" : {name: "name3", imgUrl: "resources/img/cinema3.jpg", longitude:-0.1300000, latitude:51.5030000},
-              "4" : {name: "name4", imgUrl: "resources/img/cinema4.jpg", longitude:-0.1310000, latitude:51.5032000}
+const numOfLevels = 1
+const data = {"0" : {name: "name0", imgUrl: "resources/img/cinema0.jpg", longitude:17.1118991, latitude:48.150789, otherNames: ["a", "b", "c"]},
+              "1" : {name: "name1", imgUrl: "resources/img/cinema1.jpg", longitude:-0.1280000, latitude:51.5050000, otherNames: ["a", "b", "c"]},
+              "2" : {name: "name2", imgUrl: "resources/img/cinema2.jpg", longitude:-0.1290000, latitude:51.5060000, otherNames: ["a", "b", "c"]},
+              "3" : {name: "name3", imgUrl: "resources/img/cinema3.jpg", longitude:-0.1300000, latitude:51.5030000, otherNames: ["a", "b", "c"]},
+              "4" : {name: "name4", imgUrl: "resources/img/cinema4.jpg", longitude:-0.1310000, latitude:51.5032000, otherNames: ["a", "b", "c"]}
 }
 const numOfCinemas = Object.keys(data).length
 const centerLatLon = new OpenLayers.LonLat(data["0"].longitude, data["0"].latitude)
@@ -27,8 +27,10 @@ map = new OpenLayers.Map("mapdiv", options);
 stamenLayer = new OpenLayers.Layer.Stamen("toner");
 map.addLayer(stamenLayer)
 
-// map.addLayer(new OpenLayers.Layer.OSM("NewLayer", "",
-//     {zoomOffset: 13, resolutions: [19.1092570678711,9.55462853393555,4.77731426696777,2.38865713348389]}));
+// map.addLayer(new OpenLayers.Layer.OSM.Hot("Hot"));
+
+// map.addLayer(new OpenLayers.Layer.OSM("NewLayer", "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"))
+    // {zoomOffset: 13, resolutions: [19.1092570678711,9.55462853393555,4.77731426696777,2.38865713348389]}));
 
 var markers = new OpenLayers.Layer.Markers("Markers");
 map.addLayer(markers);
@@ -68,10 +70,10 @@ const startButton = document.getElementById('startButton');
 const exitButton = document.getElementById('exitButton');
 const confirmButton = document.getElementById('confirmButton');
 const nextButton = document.getElementById('nextButton');
+const backButton = document.getElementById('backButton');
 const startPage = document.getElementById('startPage');
 const quizPage = document.getElementById('quizPage');
 const endPage = document.getElementById('endPage');
-const textSelection = document.getElementById('textSelection');
 const questionResult = document.getElementById('questionResult');
 const questionId = document.getElementById('questionId');
 const totalResultText = document.getElementById('totalResultText');
@@ -86,7 +88,6 @@ startButton.addEventListener('click', (event) => {
     confirmButton.style.display = 'inline-block';
     confirmButton.disabled = true;
     nextButton.style.display = 'none'
-    textSelection.innerHTML = '';
     questionResult.innerHTML = ''
     exitButton.style.visibility = "visible";
 
@@ -104,6 +105,7 @@ exitButton.addEventListener('click', (event) => {
     startPage.style.display = 'block';
     quizPage.style.display = 'none';
     endPage.style.display = 'none';
+    exitButton.style.visibility = "hidden";
     level = 0;
 
     inputNickname.value = '';
@@ -117,12 +119,9 @@ confirmButton.addEventListener('click', (event) => {
 
     confirmButton.style.display = 'none';
     nextButton.style.display = 'inline-block'
-    textSelection.innerHTML = '';
 
     make_result();
     init_center();
-
-    questionResult.innerHTML = success ? 'Success!' : 'FAIL :('
 });
 
 nextButton.addEventListener('click', (event) => {
@@ -144,11 +143,20 @@ nextButton.addEventListener('click', (event) => {
         var cell1 = row.insertCell(1);
         var cell2 = row.insertCell(2);
 
-        cell0.innerHTML = table.getElementsByTagName("tr").length;
-        cell1.innerHTML = inputNickname.value;
-        cell2.innerHTML = total_res;
+        // cell0.innerHTML = table.getElementsByTagName("tr").length;
+        // cell1.innerHTML = inputNickname.value;
+        // cell2.innerHTML = total_res;
 
         redraw_markers('some');
+
+        $($.fn.dataTable.tables(true)).DataTable()
+        .columns.adjust();
+
+        $('#myTable').DataTable().row.add([
+            table.getElementsByTagName("tr").length,
+            inputNickname.value,
+            total_res
+        ]).draw(false);
     }
     else
     {
@@ -163,4 +171,23 @@ nextButton.addEventListener('click', (event) => {
         update_question();
         level ++;
     }
+});
+
+backButton.addEventListener('click', (event) => {
+    exitButton.click()
+});
+
+
+$(document).ready(function () {
+$('#myTable').DataTable(
+    {
+        // scrollY:        "200px",
+scrollCollapse: true,
+paging:         false,
+scrollX: "100%",
+searching: false,
+info:false
+    }
+);
+$('.dataTables_length').addClass('bs-select');
 });

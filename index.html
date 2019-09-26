@@ -2,6 +2,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="resources/styles.css">
         <script src="resources/OpenLayers-2.13.1/OpenLayers.js"></script>
+        <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.1.2"></script>
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -12,8 +13,8 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
     </head>
 
-    <body>
-        <div id="mapContainer" style="padding:10px; width:50%; height:100%; float:left">
+    <body style="background-color: rgba(100,100,100)">
+        <div id="mapContainer" style="margin:10px; width:49%; height: 98vh; float:left; outline-style: solid; outline-width:3px;">
             <div id="mapdiv"></div>
         </div>
 
@@ -23,26 +24,29 @@
             <div style="float:right;">
                 <a><i id="exitButton" class="far fa-times-circle" style="font-size: 2em; padding-top: 15px; visibility: hidden;"></i></a>
             </div>
-
-            <div id="startPage" style="text-align:center; padding-top:40%; display:block">
-                <div style="width:100%; display:flex; align-items:center; justify-content:center">
-                    <div class="md-form form-lg">
-                      <input type="text" id="inputLGEx" class="form-control form-control-lg">
-                      <label for="inputLGEx">Enter nickname</label>
-                    </div>
-                    <!-- <input style="width:30%" class="form-control form-control-lg" type="text" id="inputNickname" placeholder="Enter your name"> -->
+            
+            <div id="startPage" style="text-align:center; display:block; box-shadow: 0 0 20px; background-color: rgba(255,0,0,0.7); margin: 30% 25% 30% 25%; height:39%;">
+                <div class="md-form form-lg" style="margin: 30% 20% 0 20%; float:left; width:60%">
+                    <input type="text" id="inputLGEx" class="form-control form-control-lg">
+                    <label for="inputLGEx">Enter nickname</label>
                 </div>
+                    <!-- <input style="width:30%" class="form-control form-control-lg" type="text" id="inputNickname" placeholder="Enter your name"> -->
 
-                <div style="width:100%;">
+                <div style="width:100%; float:left; margin-top:15%;">
                     <!-- <button id="startButton" type="button" class="btn btn-dark"><i class="fas fa-video" aria-hidden="true" style="padding-right: 10px;"></i>Start</button> -->
                     <button id="startButton" type="button" class="btn btn-dark">Start</button>
                 </div>
             </div>
 
-            <div id="quizPage" style="display:none;">
-                <div style="text-align:center; padding-top:40%">
-                    <p id="questionId"></p>
-                    <div><img id="questionImg" src=""></div>
+            <div id="quizPage" style="display:none; background-color: rgba(255,0,0,0.7); box-shadow: 0 0 20px; margin: 15% 20% 15% 20%; height:68%;">
+                <div style="text-align:center;">
+                    <div>
+                        <p id="questionId"></p>
+                    </div>                    
+                    <div>
+                        <img id="questionImg" src="">
+                    </div>
+                    div
                     <p id="textSelection" style="height: 30px;"></p>
                     <button id="confirmButton" type="button" class="btn btn-dark" disabled>Confirm Selection</button>
 
@@ -50,6 +54,7 @@
                     <button id="nextButton" type="button" class="btn btn-dark" style="display:none">Continue</button>
                 </div>
             </div>
+
 
             <div id="endPage" style="display:none;">
                 <p id="totalResultText"></p>

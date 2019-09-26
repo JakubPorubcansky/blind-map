@@ -17,13 +17,13 @@ function markerOnClick(id) {
         confirmButton.disabled = false;
         textSelection.innerHTML = "You have selected ".concat(data[id].name).concat(" cinema")
 
-        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/marker_active.png")
+        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_active.png")
 
         for(var i = 0; i < map.layers[1].markers.length; i++)
         {
             if(i != id_marker_sel && answers[i] == markerStates[0])
             {
-                map.layers[1].markers[i].icon.setUrl("resources/marker_inactive.png")
+                map.layers[1].markers[i].icon.setUrl("resources/img/marker_inactive.png")
             }
         }
     }
@@ -39,7 +39,7 @@ function redraw_markers(p) {
     {
         if (p == 'all' || (p == 'some' && answers[i] == markerStates[0]))
         {
-            map.layers[1].markers[i].icon.setUrl("resources/marker_inactive.png")
+            map.layers[1].markers[i].icon.setUrl("resources/img/marker_inactive.png")
         }
     }
 }
@@ -68,13 +68,13 @@ function make_result(){
     if (id_marker_sel == cinemaOrder[level - 1])
     {
         success = true
-        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/marker_green.png")
+        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_green.png")
         answers[id_marker_sel] = markerStates[1]
     }
     else
     {
-        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/marker_red.png")
-        map.layers[1].markers[cinemaOrder[level - 1]].icon.setUrl("resources/marker_yellow.png")
+        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_red.png")
+        map.layers[1].markers[cinemaOrder[level - 1]].icon.setUrl("resources/img/marker_yellow.png")
         answers[cinemaOrder[level - 1]] = markerStates[2]
     }
 }

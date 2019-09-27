@@ -1,4 +1,4 @@
-const numOfLevels = 1
+const numOfLevels = 10
 // const data = {"0" : {name: "name0", imgUrl: "resources/img/cinema0.jpg", longitude:17.1118991, latitude:48.150789, otherNames: ["a", "b", "c"]},
 //               "1" : {name: "name1", imgUrl: "resources/img/cinema1.jpg", longitude:-0.1280000, latitude:51.5050000, otherNames: ["a", "b", "c"]},
 //               "2" : {name: "name2", imgUrl: "resources/img/cinema2.jpg", longitude:-0.1290000, latitude:51.5060000, otherNames: ["a", "b", "c"]},

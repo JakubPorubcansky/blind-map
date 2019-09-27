@@ -17,26 +17,28 @@ function markerOnClick(id) {
         confirmButton.disabled = false;
         // textSelection.innerHTML = "You have selected ".concat(data[id].name).concat(" cinema")
 
-        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_active.png")
+        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_dot_sel.png")
+        // map.layers[1].markers[id_marker_sel].inflate(1.1)
 
         for(var i = 0; i < map.layers[1].markers.length; i++)
         {
             if(i != id_marker_sel && answers[i] == markerStates[0])
             {
-                map.layers[1].markers[i].icon.setUrl("resources/img/marker_inactive.png")
+                map.layers[1].markers[i].icon.setUrl("resources/img/marker_dot.png")
+                // map.layers[1].markers[id_marker_sel].inflate(0.9)
             }
         }
     }
     if(display == displayStates[3])
     {
-        endInfo.innerHTML = 'this is '.concat(data[id].name)
+        endInfo.innerHTML = 'Toto je kino '.concat(data[id].name, '<br>Další názvy: ', data[id].otherNames.join(', '))
         endImg.src = data[id].imgUrl
     }
 }
 
 function init_center() {
-    // map.setCenter(center, zoom);
-    map.zoomToExtent(extent);
+    map.setCenter(center, zoom);
+    // map.zoomToExtent(extent);
 }
 
 function redraw_markers(p) {
@@ -61,7 +63,9 @@ function get_levels() {
 }
 
 function update_question(){
-    questionId.innerHTML='Where is the cinema '.concat(data[cinemaOrder[level].toString()].name).concat(' located?')
+    questionId.innerHTML='Najdi kino <font size="30"><b>'.concat(data[cinemaOrder[level].toString()].name).concat('</b></font><br> <font size="30"><font size="5">jehož další názvy byli:<br>',
+    data[cinemaOrder[level].toString()].otherNames.join(', '))
+
 
     var img = document.getElementById("questionImg");
     img.src = data[cinemaOrder[level].toString()].imgUrl
@@ -73,16 +77,16 @@ function make_result(){
     if (id_marker_sel == cinemaOrder[level - 1])
     {
         success = true
-        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_green.png")
+        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_dot_green.png")
         answers[id_marker_sel] = markerStates[1]
-        questionResult.innerHTML = "Success!"
+        questionResult.innerHTML = '<font size="30"><b>Správně!</b></font>'
     }
     else
     {
-        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_red.png")
-        map.layers[1].markers[cinemaOrder[level - 1]].icon.setUrl("resources/img/marker_yellow.png")
+        map.layers[1].markers[id_marker_sel].icon.setUrl("resources/img/marker_dot_red.png")
+        map.layers[1].markers[cinemaOrder[level - 1]].icon.setUrl("resources/img/marker_dot_yellow.png")
         answers[cinemaOrder[level - 1]] = markerStates[2]
-        questionResult.innerHTML = "You have selected ".concat(data[id_marker_sel].name).concat(" cinema")
+        questionResult.innerHTML = '<font size="30"><b>Chyba!</b></font><br>'.concat("Toto je kino ", data[id_marker_sel].name,'')
     }
 }
 

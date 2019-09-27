@@ -46,7 +46,7 @@ function redraw_markers(p) {
     {
         if (p == 'all' || (p == 'some' && answers[i] == markerStates[0]))
         {
-            map.layers[1].markers[i].icon.setUrl("resources/img/marker_inactive.png")
+            map.layers[1].markers[i].icon.setUrl("resources/img/marker_dot.png")
         }
     }
 }
@@ -58,14 +58,19 @@ function get_levels() {
     {
         answers[cinemaOrder[i]] = markerStates[0]
     }
+    cinemaOrder = [0,2,3,4,7,8,9,10,11,12,17,18,21,22,23,24,26,27,31,32,33]
     shuffle(cinemaOrder)
     cinemaOrder = cinemaOrder.slice(0, numOfLevels)
 }
 
 function update_question(){
-    questionId.innerHTML='Najdi kino <font size="30"><b>'.concat(data[cinemaOrder[level].toString()].name).concat('</b></font><br> <font size="30"><font size="5">jehož další názvy byli:<br>',
-    data[cinemaOrder[level].toString()].otherNames.join(', '))
+    questionId.innerHTML='Najdi kino <font size="+20"><b>'.concat(data[cinemaOrder[level].toString()].name)
 
+    if (data[cinemaOrder[level].toString()].otherNames.length > 0)
+    {
+        questionId.innerHTML = questionId.innerHTML.concat('</b></font><br> <font size="30"><font size="5">jehož další názvy byli:<br>',
+        data[cinemaOrder[level].toString()].otherNames.join(', '))
+    }
 
     var img = document.getElementById("questionImg");
     img.src = data[cinemaOrder[level].toString()].imgUrl

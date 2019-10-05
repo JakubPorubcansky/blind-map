@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
   </head>
   <body>
     <div class="main-container">
@@ -19,10 +23,20 @@
       <div class="sub-container right">
         <div class="content-container form">
           <div class="panes pane1">
-            <div class="header">
-
+            <div id="pane1-header" class="headers">
+              <p class="header main">Od Jadranu k Atlantiku</p>
+              <p class="header sub">Putování brněnskými kiny</p>
             </div>
 
+            <div class="input-form">
+              <div class="md-form form-lg">
+                  <input style="color:white" type="text" id="inputLGEx" class="form-control form-control-lg">
+                  <label for="inputLGEx" style="color:white">Jméno hráče</label>
+              </div>
+              <div class="button-container">
+                <button id="startButton" type="button" class="btn btn-dark">Start</button>
+              </div>
+            </div>
           </div>
 
           <div class="exit">

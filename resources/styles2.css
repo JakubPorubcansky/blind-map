@@ -5,7 +5,7 @@
 }
 
 html {
-  font-size: calc(0.5em + 0.5vw);
+  font-size: calc(0.1em + 0.9vw);
 }
 
 .main-container {
@@ -53,10 +53,53 @@ html {
   background-color: rgb(40,50,170);
 }
 
-.content-container.form .panes.pane1 .header {
+.content-container.form .panes.pane1 .headers {
   width: 100%;
-  height: 30%;
+  height: 25%;
+  padding-top: 3%;
+  text-align: center;
   background-color: rgb(50,60,140);
+  overflow: hidden;
+  text-shadow: 0 0 2px rgba(0, 0, 0);
+  color: rgba(240,240,240);
+  font-weight: 550;
+}
+
+.content-container.form .panes.pane1 .headers .header {
+  padding: 0;
+  margin: 0;
+}
+
+.content-container.form .panes.pane1 .headers .header.main {
+  font-size: 3.8em;
+}
+
+.content-container.form .panes.pane1 .headers .header.sub {
+  font-size: 2.9em;
+}
+
+.content-container.form .panes.pane1 .input-form {
+  box-shadow: 0 0 5px;
+  text-align:center;
+  background-color: rgba(100,100,100,0.5);
+  margin: 15% 25% 0 25%;
+  height: 39%;
+}
+
+.content-container.form .panes.pane1 .input-form .md-form {
+  margin: 30% 20% 0 20%;
+  float: left;
+  height: 70%;
+  width: 60%;
+  background-color: green;
+}
+
+.content-container.form .panes.pane1 .input-form .button-container {
+  width: 100%;
+  height: 20%;
+  float: left;
+  background-color: white;
+  /* margin-top: 20%; */
 }
 
 .content-container.form .exit {
@@ -74,7 +117,7 @@ html {
 .content-container.form .footer {
   width: 100%;
   height: 6%;
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
   background-color: rgb(50,80,130);
   overflow-y: hidden;

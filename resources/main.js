@@ -1,11 +1,3 @@
-const numOfLevels = 10
-// const data = {"0" : {name: "name0", imgUrl: "resources/img/cinema0.jpg", longitude:17.1118991, latitude:48.150789, otherNames: ["a", "b", "c"]},
-//               "1" : {name: "name1", imgUrl: "resources/img/cinema1.jpg", longitude:-0.1280000, latitude:51.5050000, otherNames: ["a", "b", "c"]},
-//               "2" : {name: "name2", imgUrl: "resources/img/cinema2.jpg", longitude:-0.1290000, latitude:51.5060000, otherNames: ["a", "b", "c"]},
-//               "3" : {name: "name3", imgUrl: "resources/img/cinema3.jpg", longitude:-0.1300000, latitude:51.5030000, otherNames: ["a", "b", "c"]},
-//               "4" : {name: "name4", imgUrl: "resources/img/cinema4.jpg", longitude:-0.1310000, latitude:51.5032000, otherNames: ["a", "b", "c"]}
-// }
-
 const data = {"0" : {name: "Art", imgUrl: "resources/img/Art.jpg", longitude:16.603373738961409, latitude:49.204186978229387, otherNames: ["Jugendkino", "Studio", "Kino náročného diváka"]},
 "1" : {name: "Astra", imgUrl: "", longitude:16.643282126278734, latitude:49.201342788954165, otherNames: ["Kino Sokol", "Hvězda"]},
 "2" : {name: "Bio Jas Husovice", imgUrl: "resources/img/Jas.png", longitude:16.636497311000248, latitude:49.213012536011753, otherNames: []},
@@ -43,6 +35,8 @@ const data = {"0" : {name: "Art", imgUrl: "resources/img/Art.jpg", longitude:16.
  "34" : {name: "Viktoria", imgUrl: "", longitude:16.618773711905359, latitude:49.187679353422347, otherNames: ["Brněnský biograf", "Kino Dornych", "Edison"]},
  "35" : {name: "Vítěz", imgUrl: "", longitude:16.604650218876646, latitude:49.163419723539690, otherNames: ["Kino Adria Horní Heršpice"]}
 }
+
+const numOfLevels = 10
 const numOfCinemas = Object.keys(data).length
 const centerLatLon = new OpenLayers.LonLat(16.608196,49.195047)
 const displayStates = {0:'start', 1:'question', 2:'result', 3:'total'}

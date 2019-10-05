@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: calc(0.5em + 0.5vw);
+}
+
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  min-width: 600px;
+  min-height: 480px;
+}
+
+.sub-container {
+  width: 50%;
+  height: 100%;
+}
+
+.sub-container.left {
+  background-color: red;
+  float: left;
+}
+
+.sub-container.right {
+  background-color: blue;
+  float: right;
+}
+
+.content-container {
+  margin: 1%;
+  width: 98%;
+  height: 98%;
+}
+
+.content-container.map{
+  outline-style: solid;
+  outline-width: 2px;
+  background-color: rgb(200,10,20);
+}
+
+.content-container.form{
+  background-color: rgb(20,10,200);
+  position: relative;
+}
+
+.content-container.form .panes {
+  width: 100%;
+  height: 94%;
+  background-color: rgb(40,50,170);
+}
+
+.content-container.form .panes.pane1 .header {
+  width: 100%;
+  height: 30%;
+  background-color: rgb(50,60,140);
+}
+
+.content-container.form .exit {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  background-color: rgb(0,0,0);
+}
+
+.content-container.form .exit i {
+  visibility: hidden;
+  font-size: 2em;
+}
+
+.content-container.form .footer {
+  width: 100%;
+  height: 6%;
+  font-weight: 500;
+  text-align: center;
+  background-color: rgb(50,80,130);
+  overflow-y: hidden;
+}
+
+.content-container.form .footer p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

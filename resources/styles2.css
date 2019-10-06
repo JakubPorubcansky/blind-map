@@ -86,20 +86,24 @@ html {
   height: 39%;
 }
 
-.content-container.form .panes.pane1 .input-form .md-form {
-  margin: 30% 20% 0 20%;
-  float: left;
-  height: 70%;
-  width: 60%;
+.content-container.form .panes.pane1 .input-form .nickname-container {
+  height: 80%;
   background-color: green;
 }
 
-.content-container.form .panes.pane1 .input-form .button-container {
-  width: 100%;
-  height: 20%;
+.content-container.form .panes.pane1 .input-form .nickname-container .md-form {
+  margin: 30% 20% 0 20%;
+  width: 60%;
   float: left;
+}
+
+.content-container.form .panes.pane1 .input-form .button-container {
+  height: 20%;
   background-color: white;
-  /* margin-top: 20%; */
+}
+
+.content-container.form .panes.pane1 .input-form .button-container button {
+  margin: auto;
 }
 
 .content-container.form .exit {

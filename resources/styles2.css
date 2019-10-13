@@ -89,6 +89,7 @@ html {
 .content-container.form .panes.pane1 .input-form .nickname-container {
   height: 80%;
   background-color: green;
+  overflow: hidden;
 }
 
 .content-container.form .panes.pane1 .input-form .nickname-container .md-form {
@@ -100,6 +101,7 @@ html {
 .content-container.form .panes.pane1 .input-form .button-container {
   height: 20%;
   background-color: white;
+  overflow: hidden;
 }
 
 .content-container.form .panes.pane1 .input-form .button-container button {

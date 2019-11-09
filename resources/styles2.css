@@ -5,19 +5,20 @@
 }
 
 html {
-  font-size: calc(0.1em + 0.9vw);
+  font-size: calc(0.1em + 1.3vmin);
 }
 
 .main-container {
   width: 100vw;
   height: 100vh;
-  min-width: 600px;
-  min-height: 480px;
+  /* min-width: 600px; */
+  /* min-height: 480px; */
 }
 
 .sub-container {
   width: 48%;
   height: 100%;
+  position: relative;
 }
 
 .sub-container.left {
@@ -31,9 +32,11 @@ html {
 }
 
 .content-container {
-  margin: 1%;
-  width: 98%;
-  height: 98%;
+  position: absolute;
+  top: 1%;
+  bottom: 1%;
+  left: 1%;
+  right: 1%;
 }
 
 .content-container.map{
@@ -43,8 +46,9 @@ html {
 }
 
 .content-container.form{
+  outline-style: solid;
+  outline-width: 1px;
   background-color: rgb(20,10,200);
-  position: relative;
 }
 
 .content-container.form .panes {
@@ -63,12 +67,13 @@ html {
   height: 33.3%;
   outline-style: solid;
   outline-width: 1px;
+  background-color: rgb(40,100,220);
 }
 
 .content-container.form .panes.pane0 .rows.r0 .c0 {
   width: 70%;
   height: 100%;
-  background-color: rgb(40,100,125);
+  background-color: rgb(30,60,115);
   float: left;
 }
 
@@ -95,16 +100,49 @@ html {
   position: relative;
 }
 
-.content-container.form .panes.pane0 .rows.r0 .c1 .bc1 .btn{
+.content-container.form .panes.pane0 .rows.r0 .c1 .bc1 .btn {
   position: absolute;
   right: 5%;
   top: 10px;
 }
 
-.content-container.form .panes.pane0 .rows.r0 .c1 .bc2 .btn{
+.content-container.form .panes.pane0 .rows.r0 .c1 .bc2 .btn {
   position: absolute;
   right: 5%;
   bottom: 10%;
+}
+
+.content-container.form .panes.pane0 .header {
+  height: 15%;
+  width: 100%;
+  outline-style: solid;
+  outline-width: 1px;
+  font-size: 2.5rem;
+  font-weight: 400;
+  padding-left: 1rem;
+}
+
+.content-container.form .panes.pane0 .content {
+  height: 85%;
+  width: 100%;
+  outline-style: solid;
+  outline-width: 1px;
+}
+
+.content-container.form .panes.pane0 .rows.r1 .header {
+  background-color: rgb(60,78,99);
+}
+
+.content-container.form .panes.pane0 .rows.r1 .content {
+  background-color: rgb(66,70,93);
+}
+
+.content-container.form .panes.pane0 .rows.r2 .header {
+  background-color: rgb(55,88,43);
+}
+
+.content-container.form .panes.pane0 .rows.r2 .content {
+  background-color: rgb(59,75,22);
 }
 
 .content-container.form .panes.pane1 .headers {
@@ -181,7 +219,7 @@ html {
   font-weight: 400;
   text-align: center;
   background-color: rgb(50,80,130);
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 
 .content-container.form .footer p {

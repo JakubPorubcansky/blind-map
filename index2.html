@@ -12,6 +12,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+    <script src="resources/OpenLayers-2.13.1/OpenLayers.js"></script>
+
   </head>
   <body>
     <div class="main-container">
@@ -23,7 +26,7 @@
       <div class="sub-container right">
         <div class="content-container form">
 
-          <div class="panes pane0">
+          <div id="introPage" class="pages page0">
             <div class="rows r0">
               <div class="cols c0">
               </div>
@@ -32,7 +35,7 @@
                   <button id="quizButton" type="button" class="btn btn-dark">Kvíz</button>
                 </div>
                 <div class="button-container bc2">
-                  <button id="programButton" type="button" class="btn btn-dark">Program</button>
+                  <a href="https://www.google.com" class="btn btn-dark">Program</a>
                 </div>
               </div>
             </div>
@@ -56,8 +59,8 @@
             </div>
           </div>
 
-          <div class="panes pane1">
-            <div id="pane1-header" class="headers">
+          <div id="startPage" class="pages page1">
+            <div id="page1-header" class="headers">
               <p class="header main">Od Jadranu k Atlantiku</p>
               <p class="header sub">Putování brněnskými kiny</p>
             </div>
@@ -76,6 +79,27 @@
             </div>
           </div>
 
+          <div id="quizPage" class="pages page2">
+            <div class="rows r0">
+              <p id="questionId"></p>
+            </div>
+
+            <div class="rows r1">
+              <img id="questionImg">
+            </div>
+
+            <div class="rows r2">
+              <p id= "questionResult" class="content"></p>
+
+              <button id="confirmButton" type="button" class="btn btn-dark">Potvrdit výběr</button>
+              <button id="nextButton" type="button" class="btn btn-dark">Pokračovat</button>
+            </div>
+          </div>
+
+          <div class="endPage">
+
+          </div>
+
           <div class="exit">
               <a><i id="exitButton" class="far fa-times-circle"></i></a>
           </div>
@@ -88,5 +112,9 @@
         </div>
       </div>
     </div>
+
+    <script type="text/javascript" src="resources/funcs2.js"></script>
+    <script type="text/javascript" src="resources/main2.js"></script>
+
   </body>
 </html>

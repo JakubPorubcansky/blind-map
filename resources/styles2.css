@@ -51,18 +51,18 @@ html {
   background-color: rgb(20,10,200);
 }
 
-.content-container.form .panes {
+.content-container.form .pages {
   width: 100%;
   height: 94%;
   background-color: rgb(40,50,170);
   display: none;
 }
 
-.content-container.form .panes.pane0 {
+.content-container.form .pages.page0 {
   display: block;
 }
 
-.content-container.form .panes.pane0 .rows {
+.content-container.form .pages.page0 .rows {
   width: 100%;
   height: 33.3%;
   outline-style: solid;
@@ -70,21 +70,21 @@ html {
   background-color: rgb(40,100,220);
 }
 
-.content-container.form .panes.pane0 .rows.r0 .c0 {
+.content-container.form .pages.page0 .rows.r0 .c0 {
   width: 70%;
   height: 100%;
   background-color: rgb(30,60,115);
   float: left;
 }
 
-.content-container.form .panes.pane0 .rows.r0 .c1 {
+.content-container.form .pages.page0 .rows.r0 .c1 {
   width: 30%;
   height: 100%;
   background-color: rgb(40,50,135);
   float: right;
 }
 
-.content-container.form .panes.pane0 .rows.r0 .c1 .bc1 {
+.content-container.form .pages.page0 .rows.r0 .c1 .bc1 {
   width: 100%;
   height: 50%;
   outline-style: solid;
@@ -92,7 +92,7 @@ html {
   position: relative;
 }
 
-.content-container.form .panes.pane0 .rows.r0 .c1 .bc2 {
+.content-container.form .pages.page0 .rows.r0 .c1 .bc2 {
   width: 100%;
   height: 50%;
   outline-style: solid;
@@ -100,19 +100,19 @@ html {
   position: relative;
 }
 
-.content-container.form .panes.pane0 .rows.r0 .c1 .bc1 .btn {
+.content-container.form .pages.page0 .rows.r0 .c1 .bc1 .btn {
   position: absolute;
   right: 5%;
   top: 10px;
 }
 
-.content-container.form .panes.pane0 .rows.r0 .c1 .bc2 .btn {
+.content-container.form .pages.page0 .rows.r0 .c1 .bc2 .btn {
   position: absolute;
   right: 5%;
   bottom: 10%;
 }
 
-.content-container.form .panes.pane0 .header {
+.content-container.form .pages.page0 .header {
   height: 15%;
   width: 100%;
   outline-style: solid;
@@ -122,30 +122,30 @@ html {
   padding-left: 1rem;
 }
 
-.content-container.form .panes.pane0 .content {
+.content-container.form .pages.page0 .content {
   height: 85%;
   width: 100%;
   outline-style: solid;
   outline-width: 1px;
 }
 
-.content-container.form .panes.pane0 .rows.r1 .header {
+.content-container.form .pages.page0 .rows.r1 .header {
   background-color: rgb(60,78,99);
 }
 
-.content-container.form .panes.pane0 .rows.r1 .content {
+.content-container.form .pages.page0 .rows.r1 .content {
   background-color: rgb(66,70,93);
 }
 
-.content-container.form .panes.pane0 .rows.r2 .header {
+.content-container.form .pages.page0 .rows.r2 .header {
   background-color: rgb(55,88,43);
 }
 
-.content-container.form .panes.pane0 .rows.r2 .content {
+.content-container.form .pages.page0 .rows.r2 .content {
   background-color: rgb(59,75,22);
 }
 
-.content-container.form .panes.pane1 .headers {
+.content-container.form .pages.page1 .headers {
   width: 100%;
   height: 25%;
   padding-top: 3%;
@@ -157,20 +157,20 @@ html {
   font-weight: 550;
 }
 
-.content-container.form .panes.pane1 .headers .header {
+.content-container.form .pages.page1 .headers .header {
   padding: 0;
   margin: 0;
 }
 
-.content-container.form .panes.pane1 .headers .header.main {
+.content-container.form .pages.page1 .headers .header.main {
   font-size: 3.8em;
 }
 
-.content-container.form .panes.pane1 .headers .header.sub {
+.content-container.form .pages.page1 .headers .header.sub {
   font-size: 2.9em;
 }
 
-.content-container.form .panes.pane1 .input-form {
+.content-container.form .pages.page1 .input-form {
   box-shadow: 0 0 5px;
   text-align:center;
   background-color: rgba(100,100,100,0.5);
@@ -178,26 +178,60 @@ html {
   height: 39%;
 }
 
-.content-container.form .panes.pane1 .input-form .nickname-container {
+.content-container.form .pages.page1 .input-form .nickname-container {
   height: 80%;
   background-color: green;
   overflow: hidden;
 }
 
-.content-container.form .panes.pane1 .input-form .nickname-container .md-form {
+.content-container.form .pages.page1 .input-form .nickname-container .md-form {
   margin: 30% 20% 0 20%;
   width: 60%;
   float: left;
 }
 
-.content-container.form .panes.pane1 .input-form .button-container {
+.content-container.form .pages.page1 .input-form .button-container {
   height: 20%;
   background-color: white;
   overflow: hidden;
 }
 
-.content-container.form .panes.pane1 .input-form .button-container button {
+.content-container.form .pages.page1 .input-form .button-container button {
   margin: auto;
+}
+
+
+.content-container.form .pages.page2 .rows {
+  outline-style: solid;
+  outline-width: 1px;
+  text-align: center;
+}
+
+.content-container.form .pages.page2 .rows.r0 {
+  width: 100%;
+  height: 20%;
+}
+
+.content-container.form .pages.page2 .rows.r1 {
+  width: 100%;
+  height: 55%;
+}
+
+#questionImg {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+.content-container.form .pages.page2 .rows.r2 {
+  width: 100%;
+  height: 25%;
+}
+
+.content-container.form .pages.page2 .rows.r2 .content {
+  width: 100%;
+  height: 10%;
+  background-color: rgb(20,32,150);
 }
 
 .content-container.form .exit {

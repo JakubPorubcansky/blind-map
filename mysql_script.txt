@@ -1,0 +1,35 @@
+CREATE TABLE kina (
+    id INT NOT NULL AUTO_INCREMENT,
+    suradnica_x DOUBLE NOT NULL,
+    suradnica_y DOUBLE NOT NULL,
+    historia MEDIUMTEXT,
+    popis MEDIUMTEXT,
+    PRIMARY KEY (id)
+) ENGINE=INNODB;
+
+CREATE TABLE nazvy_kin (
+    id INT NOT NULL AUTO_INCREMENT,
+    id_kino INT NOT NULL,
+    nazov_kina VARCHAR(50) NOT NULL,
+    od DATE NOT NULL,
+    do DATE NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_kino) REFERENCES kina(id)
+) ENGINE=INNODB;
+
+INSERT INTO kina(suradnica_x,suradnica_y,historia,popis)
+VALUES 
+   (10.4,9.8,'historia kina 1','popis kina 1'),
+   (4.9,2.2,'historia kina 2','popis kina 2'),
+   (3.1,20.5,'historia kina 3','popis kina 3')
+   
+INSERT INTO nazvy_kin(id_kino,nazov_kina,od,do)
+VALUES 
+   (1,'Scala','1923-01-23','1939-03-17'),
+   (1,'Bio Dopz','1939-03-18','1945-09-12'),
+   (1,'Scala','1945-09-13','1970-08-26'),
+   (2,'Praha','1930-12-03','1938-02-10'),
+   (2,'Alfa','1938-02-11','1946-05-15'),
+   (2,'Lido Bio','1946-05-16','1966-08-08'),
+   (3,'Aladin','1918-11-09','1930-03-12'),
+   (3,'Lucerna','1930-03-13','2000-04-29')

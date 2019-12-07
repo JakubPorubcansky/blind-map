@@ -1,3 +1,37 @@
+function displayPage() {
+  introPage.style.display = 'none';
+  startPage.style.display = 'none';
+  quizPage.style.display = 'none';
+  endPage.style.display = 'none';
+
+  switch(display) {
+  case displayStates[0]:
+    introPage.style.display = 'block';
+    break;
+  case displayStates[1]:
+    startPage.style.display = 'block';
+    break;
+  case displayStates[2]:
+    quizPage.style.display = 'block';
+
+    confirmButton.style.display = 'inline-block';
+    confirmButton.disabled = true;
+    nextButton.style.display = 'none'
+    questionResult.innerHTML = ''
+    break;
+  case displayStates[3]:
+    quizPage.style.display = 'block';
+
+    confirmButton.style.display = 'none';
+    nextButton.style.display = 'inline-block'
+    questionResult.style.height = "65%";
+    break;
+  case displayStates[4]:
+    endPage.style.display = 'block';
+    break;
+  }
+}
+
 function shuffle(a) {
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {
@@ -12,7 +46,7 @@ function shuffle(a) {
 function markerOnClick(id) {
     id_marker_sel = parseInt(id)
 
-    if(level > 0 && answers[id_marker_sel] == markerStates[0] && display == displayStates[1])
+    if(level > 0 && answers[id_marker_sel] == markerStates[0] && display == displayStates[2])
     {
         confirmButton.disabled = false;
         // textSelection.innerHTML = "You have selected ".concat(data[id].name).concat(" cinema")
@@ -29,7 +63,7 @@ function markerOnClick(id) {
             }
         }
     }
-    if(display == displayStates[3])
+    if(display == displayStates[4])
     {
         endInfo.innerHTML = 'Toto je kino '.concat(data[id].name, '<br>Další názvy: ', data[id].otherNames.join(', '))
         endImg.src = data[id].imgUrl

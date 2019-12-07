@@ -36,16 +36,16 @@ const data = {"0" : {name: "Art", imgUrl: "resources/img/Art.jpg", longitude:16.
  "35" : {name: "Vítěz", imgUrl: "", longitude:16.604650218876646, latitude:49.163419723539690, otherNames: ["Kino Adria Horní Heršpice"]}
 }
 
-const numOfLevels = 10
+const numOfLevels = 2
 const numOfCinemas = Object.keys(data).length
+const displayStates = {0:'intro', 1:'start', 2:'question', 3:'result', 4:'total'}
+const markerStates = {0:'without', 1:'green', 2:'red', 3:'orange', 4:'selection', 5:'hover'}
 const centerLatLon = new OpenLayers.LonLat(16.608196,49.195047)
-const displayStates = {4: 'intro', 0:'start', 1:'question', 2:'result', 3:'total'}
-const markerStates = {0:'without', 1:'true', 2:'false'}
 
 var totalPoints = 0;
 var level = 0;
+var display = displayStates[0]
 var zoom = 14;
-var display = displayStates[4]
 
 ///////////////////////
 
@@ -60,7 +60,6 @@ map = new OpenLayers.Map("map-container", options);
 // map.addLayer(stamenLayer)
 
 // map.addLayer(new OpenLayers.Layer.OSM.Hot("Hot"));
-
 
 map.addLayer(new OpenLayers.Layer.OSM())
     // {zoomOffset: 13, resolutions: [19.1092570678711,9.55462853393555,4.77731426696777,2.38865713348389]}));
@@ -222,7 +221,7 @@ nextButton.addEventListener('click', (event) => {
         update_question();
         level ++;
     }
-    
+
     questionResult.style.height = "10%";
 });
 

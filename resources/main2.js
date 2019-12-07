@@ -38,65 +38,16 @@ const data = {"0" : {name: "Art", imgUrl: "resources/img/Art.jpg", longitude:16.
 
 const numOfLevels = 2
 const numOfCinemas = Object.keys(data).length
-const displayStates = {0:'intro', 1:'start', 2:'question', 3:'result', 4:'total'}
+const displayStates = {0:'intro', 1:'start', 2:'question', 3:'result', 4:'summary'}
 const markerStates = {0:'without', 1:'green', 2:'red', 3:'orange', 4:'selection', 5:'hover'}
-const centerLatLon = new OpenLayers.LonLat(16.608196,49.195047)
 
-var totalPoints = 0;
-var level = 0;
-var display = displayStates[0]
-var zoom = 14;
-
-///////////////////////
-
-var fromProjection = new OpenLayers.Projection("EPSG:4326"); // transform from WGS 1984
-var toProjection = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
-var extent = new OpenLayers.Bounds( 16, 48, 17, 50).transform(fromProjection, toProjection);
-var options = {restrictedExtent: extent};
-
-map = new OpenLayers.Map("map-container", options);
-
-// stamenLayer = new OpenLayers.Layer.Stamen("toner");
-// map.addLayer(stamenLayer)
-
-// map.addLayer(new OpenLayers.Layer.OSM.Hot("Hot"));
-
-map.addLayer(new OpenLayers.Layer.OSM())
-    // {zoomOffset: 13, resolutions: [19.1092570678711,9.55462853393555,4.77731426696777,2.38865713348389]}));
-
-var markers = new OpenLayers.Layer.Markers("Markers");
-map.addLayer(markers);
-
-for(var key in data){
-    var lonLat = new OpenLayers.LonLat(data[key].longitude, data[key].latitude)
-    .transform(
-        fromProjection,
-        toProjection
-    );
-    var marker = new OpenLayers.Marker(lonLat, new OpenLayers.Icon('resources/img/marker_dot.png', new OpenLayers.Size(30,30)));
-    marker.id = key;
-    marker.events.register("mousedown", marker, function() {
-        markerOnClick(this.id);
-    });
-    marker.events.register("mouseover", marker, function() {
-        this.inflate(1.1)
-    });
-    marker.events.register("mouseout", marker, function() {
-        this.inflate(0.9)
-    });
-    markers.addMarker(marker);
-}
-
-var center = centerLatLon
-    .transform(
-        fromProjection,
-        toProjection
-    );
-
-map.setCenter(center, zoom);
-// map.zoomToExtent(extent);
-
-//////////////////////////////////////////////////////////////////////////////////
+const fromProjection = new OpenLayers.Projection("EPSG:4326"); // transform from WGS 1984
+const toProjection = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+const map_center = new OpenLayers.LonLat(16.608196,49.195047)
+const map_center_transformed = map_center.transform(fromProjection, toProjection);
+const map_zoom = 14;
+const extent = new OpenLayers.Bounds( 16, 48, 17, 50).transform(fromProjection, toProjection);
+const options = {restrictedExtent: extent};
 
 const quizButton = document.getElementById('quizButton');
 const startButton = document.getElementById('startButton');
@@ -116,42 +67,46 @@ const totalResultText = document.getElementById('totalResultText');
 const inputNickname = document.getElementById("inputLGEx")
 // const table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
 
+var totalPoints = 0;
+var level = 0;
+var display = displayStates[0]
+
+///////////////////////
+
+scriptPrevendDefaultError()
+
+displayPage()
+
+map = mapInit()
+
+//////////////////////////////////////////////////////////////////////////////////
+
 quizButton.addEventListener('click', (event) => {
-    display = displayStates[0]
+    display = displayStates[1]
+    displayPage()
 
-    startPage.style.display = 'block';
-    introPage.style.display = 'none';
-    exitButton.style.visibility = "visible";
-
+    // exitButton.style.display = "visible";
 });
 
-
 startButton.addEventListener('click', (event) => {
-    display = displayStates[1]
+    display = displayStates[2]
+    displayPage()
 
-    startPage.style.display = 'none';
-    quizPage.style.display = 'block';
-    confirmButton.style.display = 'inline-block';
-    confirmButton.disabled = true;
-    nextButton.style.display = 'none'
-    questionResult.innerHTML = ''
-    exitButton.style.visibility = "visible";
+    // exitButton.style.visibility = "visible";
 
     nickname = inputNickname.value
 
-    get_levels()
-    update_question()
+    getLevels()
+    updateQuestion()
 
     level ++;
 });
 
 exitButton.addEventListener('click', (event) => {
     display = displayStates[0]
+    displayPage()
 
-    startPage.style.display = 'block';
-    quizPage.style.display = 'none';
-    endPage.style.display = 'none';
-    exitButton.style.visibility = "hidden";
+    // exitButton.style.visibility = "hidden";
     endInfo.innerHTML = ''
     endImg.src = ""
 
@@ -159,30 +114,25 @@ exitButton.addEventListener('click', (event) => {
 
     inputNickname.value = '';
 
-    init_center();
-    redraw_markers('all');
+    mapRecenter(map);
+    redrawMarkers('all');
 });
 
 confirmButton.addEventListener('click', (event) => {
-    display = displayStates[2]
+    display = displayStates[3]
+    displayPage()
 
-    confirmButton.style.display = 'none';
-    nextButton.style.display = 'inline-block'
-    questionResult.style.height = "65%";
-
-    make_result();
-    init_center();
+    makeResult();
+    mapRecenter(map);
 });
 
 nextButton.addEventListener('click', (event) => {
     if (cinemaOrder.length == level)
     {
-        display = displayStates[3]
+        display = displayStates[4]
+        displayPage()
 
-        quizPage.style.display = 'none';
-        endPage.style.display = 'block';
-
-        total_res = get_total_result()
+        total_res = getTotalResult()
         totalResultText.innerHTML = ''.concat(inputNickname.value, ', tvoje skóre je ', total_res.toString(),
             '/', numOfLevels)
 
@@ -195,7 +145,7 @@ nextButton.addEventListener('click', (event) => {
         // cell1.innerHTML = inputNickname.value;
         // cell2.innerHTML = total_res;
 
-        redraw_markers('some');
+        redrawMarkers('some');
 
         $($.fn.dataTable.tables(true)).DataTable()
         .columns.adjust();
@@ -210,15 +160,11 @@ nextButton.addEventListener('click', (event) => {
     }
     else
     {
-        display = displayStates[1]
+        display = displayStates[2]
+        displayPage()
 
-        confirmButton.style.display = 'inline-block';
-        confirmButton.disabled = true;
-        nextButton.style.display = 'none'
-        questionResult.innerHTML = ''
-
-        redraw_markers('some');
-        update_question();
+        redrawMarkers('some');
+        updateQuestion();
         level ++;
     }
 

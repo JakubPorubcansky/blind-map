@@ -36,10 +36,12 @@ const data = {"0" : {name: "Art", imgUrl: "resources/img/Art.jpg", longitude:16.
  "35" : {name: "Vítěz", imgUrl: "", longitude:16.604650218876646, latitude:49.163419723539690, otherNames: ["Kino Adria Horní Heršpice"]}
 }
 
+scriptPrevendDefaultError()
+
 const numOfLevels = 2
 const numOfCinemas = Object.keys(data).length
 const displayStates = {0:'intro', 1:'start', 2:'question', 3:'result', 4:'summary'}
-const markerStates = {0:'without', 1:'green', 2:'red', 3:'orange', 4:'selection', 5:'hover'}
+const markerStates = {0:'without', 1:'green', 2:'red', 3:'yellow', 4:'selection'}
 
 const fromProjection = new OpenLayers.Projection("EPSG:4326"); // transform from WGS 1984
 const toProjection = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
@@ -73,10 +75,7 @@ var display = displayStates[0]
 
 ///////////////////////
 
-scriptPrevendDefaultError()
-
 displayPage()
-
 map = mapInit()
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -93,11 +92,11 @@ startButton.addEventListener('click', (event) => {
     displayPage()
 
     // exitButton.style.visibility = "visible";
-
     nickname = inputNickname.value
 
-    getLevels()
-    updateQuestion()
+    cinemaOrder = getCinemaOrder()
+    markerStateValues = initMarkerStates()
+    newQuestion()
 
     level ++;
 });
@@ -109,13 +108,12 @@ exitButton.addEventListener('click', (event) => {
     // exitButton.style.visibility = "hidden";
     endInfo.innerHTML = ''
     endImg.src = ""
+    inputNickname.value = '';
 
     level = 0;
 
-    inputNickname.value = '';
-
     mapRecenter(map);
-    redrawMarkers('all');
+    resetMarkers('all');
 });
 
 confirmButton.addEventListener('click', (event) => {
@@ -132,6 +130,8 @@ nextButton.addEventListener('click', (event) => {
         display = displayStates[4]
         displayPage()
 
+        resetMarkers('some');
+
         total_res = getTotalResult()
         totalResultText.innerHTML = ''.concat(inputNickname.value, ', tvoje skóre je ', total_res.toString(),
             '/', numOfLevels)
@@ -144,8 +144,6 @@ nextButton.addEventListener('click', (event) => {
         // cell0.innerHTML = table.getElementsByTagName("tr").length;
         // cell1.innerHTML = inputNickname.value;
         // cell2.innerHTML = total_res;
-
-        redrawMarkers('some');
 
         $($.fn.dataTable.tables(true)).DataTable()
         .columns.adjust();
@@ -163,8 +161,8 @@ nextButton.addEventListener('click', (event) => {
         display = displayStates[2]
         displayPage()
 
-        redrawMarkers('some');
-        updateQuestion();
+        resetMarkers('some');
+        newQuestion();
         level ++;
     }
 

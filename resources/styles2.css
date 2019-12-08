@@ -219,6 +219,10 @@ html {
   height: auto;
 }
 
+#quizPage {
+  font-size:2rem;
+}
+
 .content-container.form .pages.page2 .rows.r2 {
   width: 100%;
   height: 25%;

@@ -119,11 +119,11 @@ function initMarkerStates() {
 }
 
 function newQuestion(){
-    questionId.innerHTML='Najdi kino <font size="+20"><b>'.concat(data[cinemaOrder[level].toString()].name)
+    questionId.innerHTML='Najdi kino <font size="+20"><b>'.concat(data[cinemaOrder[level].toString()].name).concat('</b></font>')
 
     if (data[cinemaOrder[level].toString()].otherNames.length > 0)
     {
-        questionId.innerHTML = questionId.innerHTML.concat('</b></font><br> <font size="30"><font size="5">jehož další názvy byli:<br>',
+        questionId.innerHTML = questionId.innerHTML.concat('<br>jehož další názvy byli:<br>',
         data[cinemaOrder[level].toString()].otherNames.join(', '))
     }
 
@@ -143,7 +143,7 @@ function makeResult(){
     {
         markerStateValues[id] = markerStates[1]
         redrawMarker(id)
-        questionResult.innerHTML = '<font size="30"><b>Správně!</b></font>'
+        questionResult.innerHTML = '<font size="+20"><b>Správně!</b></font>'
     }
     else
     {
@@ -152,7 +152,7 @@ function makeResult(){
         redrawMarker(id)
         redrawMarker(cinemaOrder[level - 1])
 
-        questionResult.innerHTML = '<font size="30"><b>Chyba!</b></font><br>'.concat("Toto je kino ", data[id].name,'')
+        questionResult.innerHTML = '<font size="+20"><b>Chyba!</b></font><br>'.concat("Toto je kino ", data[id].name,'')
     }
 }
 

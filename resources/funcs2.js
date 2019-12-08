@@ -2,7 +2,7 @@ function displayPage() {
   introPage.style.display = 'none';
   startPage.style.display = 'none';
   quizPage.style.display = 'none';
-  endPage.style.display = 'none';
+  summaryPage.style.display = 'none';
 
   switch(display) {
   case displayStates[0]:
@@ -27,7 +27,7 @@ function displayPage() {
     questionResult.style.height = "65%";
     break;
   case displayStates[4]:
-    endPage.style.display = 'block';
+    summaryPage.style.display = 'block';
     break;
   }
 }

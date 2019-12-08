@@ -38,7 +38,7 @@ const data = {"0" : {name: "Art", imgUrl: "resources/img/Art.jpg", longitude:16.
 
 scriptPrevendDefaultError()
 
-const numOfLevels = 2
+const numOfLevels = 1
 const numOfCinemas = Object.keys(data).length
 const displayStates = {0:'intro', 1:'start', 2:'question', 3:'result', 4:'summary'}
 const markerStates = {0:'without', 1:'green', 2:'red', 3:'yellow', 4:'selection'}
@@ -59,19 +59,19 @@ const nextButton = document.getElementById('nextButton');
 const introPage = document.getElementById('introPage');
 const startPage = document.getElementById('startPage');
 const quizPage = document.getElementById('quizPage');
-const endPage = document.getElementById('endPage');
+const summaryPage = document.getElementById('summaryPage');
 const endImg = document.getElementById('endImg');
 const endInfo = document.getElementById('endInfo');
 const questionResult = document.getElementById('questionResult');
 const questionResultContainer = document.getElementById('questionResultContainer');
 const questionId = document.getElementById('questionId');
-const totalResultText = document.getElementById('totalResultText');
+const summaryText = document.getElementById('summaryText');
 const inputNickname = document.getElementById("inputLGEx")
-// const table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
+const table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
 
 var totalPoints = 0;
 var level = 0;
-var display = displayStates[0]
+var display = displayStates[1]
 
 ///////////////////////
 
@@ -133,7 +133,7 @@ nextButton.addEventListener('click', (event) => {
         resetMarkers('some');
 
         total_res = getTotalResult()
-        totalResultText.innerHTML = ''.concat(inputNickname.value, ', tvoje skóre je ', total_res.toString(),
+        summaryText.innerHTML = ''.concat(inputNickname.value, ', tvoje skóre je ', total_res.toString(),
             '/', numOfLevels)
 
         var row = table.insertRow(0);
@@ -170,16 +170,16 @@ nextButton.addEventListener('click', (event) => {
 });
 
 
-// $(document).ready(function () {
-// $('#myTable').DataTable(
-//     {
-//         // scrollY:        "200px",
-// scrollCollapse: true,
-// paging:         false,
-// scrollX: "100%",
-// searching: false,
-// info:false
-//     }
-// );
-// $('.dataTables_length').addClass('bs-select');
-// });
+$(document).ready(function () {
+$('#myTable').DataTable(
+    {
+        // scrollY:        "200px",
+scrollCollapse: true,
+paging:         false,
+scrollX: "100%",
+searching: false,
+info:false
+    }
+);
+$('.dataTables_length').addClass('bs-select');
+});

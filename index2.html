@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+
+
     <link rel="stylesheet" type="text/css" href="resources/styles2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css">
@@ -12,9 +14,35 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
     <script src="resources/OpenLayers-2.13.1/OpenLayers.js"></script>
 
+    <style media="screen">
+        /* #bg {
+            background-image: url("resources/img/bcg2.png");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        } */
+
+        table.dataTable,
+        table.dataTable th,
+        table.dataTable td {
+          -webkit-box-sizing: content-box;
+          -moz-box-sizing: content-box;
+          box-sizing: content-box;
+        }
+        table.dataTable thead tr {
+          background-color: lightgrey;
+        }
+
+        table.dataTable td.sorting_1{ background-color: rgba(255,255,255,0.1); border:1px lightgrey; }
+        table.dataTable td{ background-color: rgba(255,255,255,0.1);  border:1px lightgrey;}
+        table.dataTable tr.odd { background-color: rgba(255,255,255,0.1);  border:1px lightgrey;}
+        table.dataTable tr.even{ background-color: rgba(255,255,255,0.1); border:1px lightgrey; }
+    </style>
   </head>
   <body>
     <div class="main-container">
@@ -96,8 +124,24 @@
             </div>
           </div>
 
-          <div id="endPage" class="pages page3">
+          <div id="summaryPage" class="pages page3">
+            <div class="rows r0">
+              <p id="summaryText"></p>
+            </div>
 
+            <div class="rows r1">
+                <table id="myTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th class="th-sm">#</th>
+                      <th class="th-sm">Nickname</th>
+                      <th class="th-sm">Points</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+            </div>
           </div>
 
           <div class="exit">

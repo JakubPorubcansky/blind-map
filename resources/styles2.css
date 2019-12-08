@@ -223,6 +223,10 @@ html {
   font-size:2rem;
 }
 
+#summaryPage {
+  font-size:2rem;
+}
+
 .content-container.form .pages.page2 .rows.r2 {
   width: 100%;
   height: 25%;
@@ -232,6 +236,21 @@ html {
   width: 100%;
   height: 10%;
   background-color: rgb(20,32,150);
+}
+
+.content-container.form .pages.page3 .rows.r0 {
+  width:100%;
+  max-height: 20%;
+  padding-top: 5%;
+  text-align:center;
+  overflow: hidden;
+}
+
+.content-container.form .pages.page3 .rows.r1 {
+  width:80%;
+  height:40%;
+  overflow:auto;
+  margin: 0 0 0 10%;
 }
 
 .content-container.form .exit {

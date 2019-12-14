@@ -1,4 +1,5 @@
 function displayPage() {
+  exitButton.style.visibility = "visible";
   introPage.style.display = 'none';
   startPage.style.display = 'none';
   quizPage.style.display = 'none';
@@ -7,6 +8,7 @@ function displayPage() {
   switch(display) {
   case displayStates[0]:
     introPage.style.display = 'block';
+    exitButton.style.visibility = "hidden";
     break;
   case displayStates[1]:
     startPage.style.display = 'block';

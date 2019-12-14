@@ -71,7 +71,7 @@ const table = document.getElementById("myTable").getElementsByTagName("tbody")[0
 
 var totalPoints = 0;
 var level = 0;
-var display = displayStates[1]
+var display = displayStates[0]
 
 ///////////////////////
 
@@ -84,14 +84,12 @@ quizButton.addEventListener('click', (event) => {
     display = displayStates[1]
     displayPage()
 
-    // exitButton.style.display = "visible";
 });
 
 startButton.addEventListener('click', (event) => {
     display = displayStates[2]
     displayPage()
 
-    // exitButton.style.visibility = "visible";
     nickname = inputNickname.value
 
     cinemaOrder = getCinemaOrder()
@@ -105,11 +103,7 @@ exitButton.addEventListener('click', (event) => {
     display = displayStates[0]
     displayPage()
 
-    // exitButton.style.visibility = "hidden";
-    endInfo.innerHTML = ''
-    endImg.src = ""
     inputNickname.value = '';
-
     level = 0;
 
     mapRecenter(map);

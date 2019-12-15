@@ -84,11 +84,6 @@ function markerOnClick(id) {
         markerStateValues[id_marker] = markerStates[4]
         redrawMarker(id_marker)
     }
-    if(display == displayStates[4])
-    {
-        endInfo.innerHTML = 'Toto je kino '.concat(data[id].name, '<br>Další názvy: ', data[id].otherNames.join(', '))
-        endImg.src = data[id].imgUrl
-    }
 }
 
 function resetMarkers(p) {
@@ -96,7 +91,6 @@ function resetMarkers(p) {
     {
         if (p == 'all' || (p == 'some' && (markerStateValues[i] == markerStates[2] || markerStateValues[i] == markerStates[4])))
         {
-
             markerStateValues[i] = markerStates[0]
             redrawMarker(i)
         }

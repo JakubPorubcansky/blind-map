@@ -188,8 +188,8 @@ var svg = d3.select("#time-range-picker"),
     height = heightAll - margin.top - margin.bottom,
     midX = width/2
 
-var mindate = new Date(1840,0,1),
-    maxdate = new Date(2020,0,1)
+var mindate = new Date(1830,0,1),
+    maxdate = new Date(2030,0,1)
 
 var y = d3.scaleTime()
     .domain([mindate, maxdate])
@@ -208,22 +208,23 @@ context.append("g")
     .call(brush)
     .call(brush.move, y.range());
 
-var axis = d3.axisRight()
-    .scale(y)
-    .tickFormat(d3.timeFormat("%Y"))
-    .tickSize(0)
-    .tickPadding(13)
+svg.append("g")
+    .attr("class", "axis axis--grid")
+    .attr("transform", "translate(" + margin.left + midX + "," + margin.top + ")")
+    .call(d3.axisRight(y)
+        .tickArguments([d3.timeYear.every(10)])
+        .tickSize(2)
+        .tickFormat(function() { return null; }))
 
-var g = svg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-var gAxis = g.append("g")
-    .attr("transform", "translate(" + midX + ", 0)");
-
-gAxis.append("g")
-    .attr("class", "time-axis")
-    .call(axis)
-    .select(".domain")
+svg.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(" + margin.left + midX + "," + margin.top + ")")
+    .call(d3.axisRight(y)
+        .tickArguments([d3.timeYear.every(20)])
+        .tickFormat(d3.timeFormat("%Y"))
+        .tickSize(0)
+        .tickPadding(-10))
+    .attr("text-anchor", null)
 
 function brushed() {
 	if (!d3.event.selection) return; // Ignore empty selections.

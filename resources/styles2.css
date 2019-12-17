@@ -294,6 +294,27 @@ html {
   text-overflow: ellipsis;
 }
 
-.time-axis text {
+/* .time-axis text {
+  pointer-events: none;
+} */
+
+.axis--x .domain,
+.axis--grid .domain {
+  fill: none;
+  stroke: none;
+}
+
+.axis--x text {
+  font-size: 1rem;
+  font-family: sans-serif;
+  fill: #555;
   pointer-events: none;
 }
+
+.axis--grid .tick line {
+  stroke: black;
+}
+
+/* .axis--grid .tick--minor line {
+  stroke-opacity: .5;
+} */

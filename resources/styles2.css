@@ -19,16 +19,20 @@ html {
   width: 48%;
   height: 100%;
   position: relative;
+  float:left;
 }
 
 .sub-container.left {
   background-color: red;
-  float: left;
 }
 
 .sub-container.right {
   background-color: blue;
-  float: right;
+}
+
+.sub-container.middle {
+  width: 4%;
+  background-color: lightgrey;
 }
 
 .content-container {
@@ -37,6 +41,14 @@ html {
   bottom: 1%;
   left: 1%;
   right: 1%;
+}
+
+.content-container.range-slider {
+}
+
+.content-container.range-slider svg {
+  width: 100%;
+  height: 100%;
 }
 
 .content-container.map{
@@ -280,4 +292,8 @@ html {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.time-axis text {
+  pointer-events: none;
 }

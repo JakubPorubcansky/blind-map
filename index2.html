@@ -17,6 +17,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
     <script src="resources/OpenLayers-2.13.1/OpenLayers.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 
     <style media="screen">
         /* #bg {
@@ -48,6 +49,13 @@
     <div class="main-container">
       <div class="sub-container left">
         <div id="map-container" class="content-container map">
+        </div>
+      </div>
+
+      <div class="sub-container middle">
+        <div class="content-container range-slider">
+          <svg id="time-range-picker" >
+          </svg>
         </div>
       </div>
 

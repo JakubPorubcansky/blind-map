@@ -177,3 +177,62 @@ info:false
 );
 $('.dataTables_length').addClass('bs-select');
 });
+
+
+
+var svg = d3.select("#time-range-picker"),
+    widthAll = parseInt(svg.style("width"), 10)
+    heightAll = parseInt(svg.style("height"), 10)
+    margin = {top: heightAll/50, right: 0, bottom: heightAll/50, left: 0},
+    width = widthAll - margin.left - margin.right,
+    height = heightAll - margin.top - margin.bottom,
+    midX = width/2
+
+var mindate = new Date(1840,0,1),
+    maxdate = new Date(2020,0,1)
+
+var y = d3.scaleTime()
+    .domain([mindate, maxdate])
+    .range([0, height])
+
+var brush = d3.brushY()
+    .extent([[0, 0], [width, height]])
+    .on("end", brushed);
+
+var context = svg.append("g")
+    .attr("class", "context")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+context.append("g")
+    .attr("class", "brush")
+    .call(brush)
+    .call(brush.move, y.range());
+
+var axis = d3.axisRight()
+    .scale(y)
+    .tickFormat(d3.timeFormat("%Y"))
+    .tickSize(0)
+    .tickPadding(13)
+
+var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var gAxis = g.append("g")
+    .attr("transform", "translate(" + midX + ", 0)");
+
+gAxis.append("g")
+    .attr("class", "time-axis")
+    .call(axis)
+    .select(".domain")
+
+function brushed() {
+	if (!d3.event.selection) return; // Ignore empty selections.
+  var d0 = d3.event.selection.map(y.invert),
+      d1 = d0.map(d3.timeYear.round);
+
+  console.log(d1[0])
+  console.log(d1[1])
+  console.log("")
+
+  /* d3.select(this).transition().call(d3.event.target.move, d1.map(y)) */;
+}

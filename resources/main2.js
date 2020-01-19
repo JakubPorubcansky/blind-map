@@ -181,12 +181,15 @@ $('.dataTables_length').addClass('bs-select');
 
 
 var svg = d3.select("#time-range-picker"),
-    widthAll = parseInt(svg.style("width"), 10)
-    heightAll = parseInt(svg.style("height"), 10)
-    margin = {top: heightAll/50, right: 0, bottom: heightAll/50, left: 0},
+    widthAll = parseInt(svg.style("width"), 10),
+    heightAll = parseInt(svg.style("height"), 10),
+    // margin = {top: heightAll/50, right: 0, bottom: heightAll/50, left: 0},
+    margin = {top: 0, right: 0, bottom: 0, left: 0},
     width = widthAll - margin.left - margin.right,
     height = heightAll - margin.top - margin.bottom,
     midX = width/2
+
+svg.attr("viewBox", "0 0 " + widthAll + " " + heightAll)
 
 var mindate = new Date(1830,0,1),
     maxdate = new Date(2030,0,1)
@@ -210,21 +213,23 @@ context.append("g")
 
 svg.append("g")
     .attr("class", "axis axis--grid")
-    .attr("transform", "translate(" + margin.left + midX + "," + margin.top + ")")
+    .attr("transform", "translate(" + margin.left + 1 + "," + margin.top + ")")
     .call(d3.axisRight(y)
-        .tickArguments([d3.timeYear.every(10)])
-        .tickSize(2)
+        .tickArguments([d3.timeYear.every(20)])
+        .tickSize(15)
         .tickFormat(function() { return null; }))
 
 svg.append("g")
     .attr("class", "axis axis--x")
-    .attr("transform", "translate(" + margin.left + midX + "," + margin.top + ")")
+    .attr("transform", "translate(" + margin.left + midX / 2 + "," + (margin.top - 15) + ")")
     .call(d3.axisRight(y)
         .tickArguments([d3.timeYear.every(20)])
         .tickFormat(d3.timeFormat("%Y"))
         .tickSize(0)
-        .tickPadding(-10))
+        .tickPadding(-16))
     .attr("text-anchor", null)
+    .selectAll("text")
+    // .attr("transform", "rotate(-90)")
 
 function brushed() {
 	if (!d3.event.selection) return; // Ignore empty selections.

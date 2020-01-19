@@ -23,16 +23,13 @@ html {
 }
 
 .sub-container.left {
-  background-color: red;
 }
 
 .sub-container.right {
-  background-color: blue;
 }
 
 .sub-container.middle {
   width: 4%;
-  background-color: lightgrey;
 }
 
 .content-container {
@@ -41,6 +38,19 @@ html {
   bottom: 1%;
   left: 1%;
   right: 1%;
+}
+
+.sub-container.left .content-container {
+  right: 0%;
+}
+
+.sub-container.middle .content-container {
+  left: 0%;
+  right: 0%;
+}
+
+.sub-container.right .content-container {
+  left: 0%;
 }
 
 .content-container.range-slider {
@@ -52,59 +62,47 @@ html {
 }
 
 .content-container.map{
-  outline-style: solid;
-  outline-width: 2px;
-  background-color: rgb(200,10,20);
+  /* box-shadow: 0 0 10px; */
 }
 
 .content-container.form{
-  outline-style: solid;
-  outline-width: 1px;
-  background-color: rgb(20,10,200);
 }
 
 .content-container.form .pages {
   width: 100%;
-  height: 94%;
-  background-color: rgb(40,50,170);
+  height: 100%;
+  padding-bottom: 10%;
+  /* box-shadow: 0 0 10px; */
+  /* background-color: rgba(100,100,100,0.7); */
   display: none;
 }
 
 .content-container.form .pages.page0 .rows {
   width: 100%;
   height: 33.3%;
-  outline-style: solid;
-  outline-width: 1px;
-  background-color: rgb(40,100,220);
 }
 
 .content-container.form .pages.page0 .rows.r0 .c0 {
   width: 70%;
   height: 100%;
-  background-color: rgb(30,60,115);
   float: left;
 }
 
 .content-container.form .pages.page0 .rows.r0 .c1 {
   width: 30%;
   height: 100%;
-  background-color: rgb(40,50,135);
   float: right;
 }
 
 .content-container.form .pages.page0 .rows.r0 .c1 .bc1 {
   width: 100%;
   height: 50%;
-  outline-style: solid;
-  outline-width: 1px;
   position: relative;
 }
 
 .content-container.form .pages.page0 .rows.r0 .c1 .bc2 {
   width: 100%;
   height: 50%;
-  outline-style: solid;
-  outline-width: 1px;
   position: relative;
 }
 
@@ -123,8 +121,6 @@ html {
 .content-container.form .pages.page0 .header {
   height: 15%;
   width: 100%;
-  outline-style: solid;
-  outline-width: 1px;
   font-size: 2.5rem;
   font-weight: 400;
   padding-left: 1rem;
@@ -133,24 +129,18 @@ html {
 .content-container.form .pages.page0 .content {
   height: 85%;
   width: 100%;
-  outline-style: solid;
-  outline-width: 1px;
 }
 
 .content-container.form .pages.page0 .rows.r1 .header {
-  background-color: rgb(60,78,99);
 }
 
 .content-container.form .pages.page0 .rows.r1 .content {
-  background-color: rgb(66,70,93);
 }
 
 .content-container.form .pages.page0 .rows.r2 .header {
-  background-color: rgb(55,88,43);
 }
 
 .content-container.form .pages.page0 .rows.r2 .content {
-  background-color: rgb(59,75,22);
 }
 
 .content-container.form .pages.page1 .headers {
@@ -158,11 +148,15 @@ html {
   height: 25%;
   padding-top: 3%;
   text-align: center;
-  background-color: rgb(50,60,140);
   overflow: hidden;
-  text-shadow: 0 0 2px rgba(0, 0, 0);
+  /* text-shadow: 0 0 2px rgba(0, 0, 0); */
   color: rgba(240,240,240);
   font-weight: 550;
+}
+
+.content-container.form .pages.page1 {
+  /* background-color: rgba(100,100,100,0); */
+  box-shadow: 0 0 0;
 }
 
 .content-container.form .pages.page1 .headers .header {
@@ -171,7 +165,7 @@ html {
 }
 
 .content-container.form .pages.page1 .headers .header.main {
-  font-size: 3.8em;
+  font-size: 4.5em;
 }
 
 .content-container.form .pages.page1 .headers .header.sub {
@@ -179,16 +173,15 @@ html {
 }
 
 .content-container.form .pages.page1 .input-form {
-  box-shadow: 0 0 5px;
+  box-shadow: 0 0 10px;
+  background-color: rgba(100,100,100,0.7);
   text-align:center;
-  background-color: rgba(100,100,100,0.5);
   margin: 15% 25% 0 25%;
   height: 39%;
 }
 
 .content-container.form .pages.page1 .input-form .nickname-container {
   height: 80%;
-  background-color: green;
   overflow: hidden;
 }
 
@@ -200,7 +193,6 @@ html {
 
 .content-container.form .pages.page1 .input-form .button-container {
   height: 20%;
-  background-color: white;
   overflow: hidden;
 }
 
@@ -210,8 +202,6 @@ html {
 
 
 .content-container.form .pages.page2 .rows {
-  outline-style: solid;
-  outline-width: 1px;
   text-align: center;
 }
 
@@ -247,7 +237,6 @@ html {
 .content-container.form .pages.page2 .rows.r2 .content {
   width: 100%;
   height: 10%;
-  background-color: rgb(20,32,150);
 }
 
 .content-container.form .pages.page3 .rows.r0 {
@@ -284,7 +273,8 @@ html {
   height: 6%;
   font-weight: 400;
   text-align: center;
-  background-color: rgb(50,80,130);
+  position: relative;
+  bottom:6%;
   /* overflow-y: hidden; */
 }
 
@@ -305,7 +295,7 @@ html {
 }
 
 .axis--x text {
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-family: sans-serif;
   fill: #555;
   pointer-events: none;

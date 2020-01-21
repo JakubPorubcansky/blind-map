@@ -209,7 +209,22 @@ var context = svg.append("g")
 context.append("g")
     .attr("class", "brush")
     .call(brush)
-    .call(brush.move, y.range());
+    .call(brush.move, y.range())
+
+context.selectAll('rect.extent')
+    			.style('fill', 'red')
+    			.style('fill-opacity', .3)
+    			.style('stroke', '#999')
+    			.style('stroke-width', .5);
+
+// context.selectAll('g.resize')
+//     .selectAll('rect')
+//     .attr('rx', 3)
+//     .attr('ry', 3)
+//     .attr('width', 5)
+//     .style('visibility', 'visible')
+//     .style('fill', '#019ed5')
+//     .style('fill-opacity', .7)
 
 svg.append("g")
     .attr("class", "axis axis--grid")
@@ -221,7 +236,7 @@ svg.append("g")
 
 svg.append("g")
     .attr("class", "axis axis--x")
-    .attr("transform", "translate(" + margin.left + midX / 2 + "," + (margin.top - 15) + ")")
+    .attr("transform", "translate(" + margin.left + 1.2 * midX / 2 + "," + (margin.top - 15) + ")")
     .call(d3.axisRight(y)
         .tickArguments([d3.timeYear.every(20)])
         .tickFormat(d3.timeFormat("%Y"))
@@ -229,7 +244,6 @@ svg.append("g")
         .tickPadding(-16))
     .attr("text-anchor", null)
     .selectAll("text")
-    // .attr("transform", "rotate(-90)")
 
 function brushed() {
 	if (!d3.event.selection) return; // Ignore empty selections.

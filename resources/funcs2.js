@@ -188,7 +188,7 @@ function mapInit() {
           fromProjection,
           toProjection
       );
-      var marker = new OpenLayers.Marker(lonLat, new OpenLayers.Icon('resources/img/marker_dot.png', new OpenLayers.Size(30,30)));
+      var marker = new OpenLayers.Marker(lonLat, new OpenLayers.Icon('resources/img/marker_dot.png', new OpenLayers.Size(15,15)));
       marker.id = key;
       marker.events.register("mousedown", marker, function() {
           markerOnClick(this.id);

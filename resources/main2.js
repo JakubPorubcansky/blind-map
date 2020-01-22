@@ -68,22 +68,25 @@ const questionId = document.getElementById('questionId');
 const summaryText = document.getElementById('summaryText');
 const inputNickname = document.getElementById("inputLGEx")
 const table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
+const selectionRange = document.getElementById("selectionRange")
 
 var totalPoints = 0;
 var level = 0;
 var display = displayStates[0]
+var markerStateValues = {}
 
 ///////////////////////
 
 displayPage()
 map = mapInit()
+resetMarkers('all')
 
 //////////////////////////////////////////////////////////////////////////////////
 
 quizButton.addEventListener('click', (event) => {
     display = displayStates[1]
     displayPage()
-
+    resetMarkers('all')
 });
 
 startButton.addEventListener('click', (event) => {
@@ -93,7 +96,7 @@ startButton.addEventListener('click', (event) => {
     nickname = inputNickname.value
 
     cinemaOrder = getCinemaOrder()
-    markerStateValues = initMarkerStates()
+    resetMarkers('all')
     newQuestion()
 
     level ++;
@@ -194,12 +197,17 @@ svg.attr("viewBox", "0 0 " + widthAll + " " + heightAll)
 var mindate = new Date(1830,0,1),
     maxdate = new Date(2030,0,1)
 
+var selectionFrom = mindate
+var selectionTo = maxdate
+
+overwriteSelectedRange()
+
 var y = d3.scaleTime()
     .domain([mindate, maxdate])
-    .range([0, height])
+    .range([3, height-3])
 
 var brush = d3.brushY()
-    .extent([[0, 0], [width, height]])
+    .extent([[0, 3], [width, height-3]])
     .on("end", brushed);
 
 var context = svg.append("g")
@@ -246,7 +254,8 @@ svg.append("g")
     .selectAll("text")
 
 function brushed() {
-	if (!d3.event.selection) return; // Ignore empty selections.
+  if (!d3.event.sourceEvent) return;
+  if (!d3.event.selection) return; // Ignore empty selections.
   var d0 = d3.event.selection.map(y.invert),
       d1 = d0.map(d3.timeYear.round);
 
@@ -254,5 +263,9 @@ function brushed() {
   console.log(d1[1])
   console.log("")
 
+  selectionFrom = d1[0]
+  selectionTo = d1[1]
+
+  overwriteSelectedRange()
   /* d3.select(this).transition().call(d3.event.target.move, d1.map(y)) */;
 }

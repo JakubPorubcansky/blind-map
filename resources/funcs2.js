@@ -68,7 +68,7 @@ function redrawMarker(id) {
 function markerOnClick(id) {
     id_marker = parseInt(id)
 
-    if(level > 0 && markerStateValues[id_marker] == markerStates[0] && display == displayStates[2])
+    if(markerStateValues[id_marker] == markerStates[0])
     {
         confirmButton.disabled = false;
 
@@ -104,15 +104,13 @@ function getCinemaOrder() {
     return cinemaOrder
 }
 
-function initMarkerStates() {
-  var markerStateValues = {}
-  for(var i = 0; i < numOfCinemas; i++)
-  {
-      markerStateValues[i] = markerStates[0]
-  }
-
-  return markerStateValues
-}
+// function initMarkerStates() {
+//   for(var i = 0; i < numOfCinemas; i++)
+//   {
+//       markerStateValues[i] = markerStates[0]
+//       redrawMarker(i)
+//   }
+// }
 
 function newQuestion(){
     questionId.innerHTML='Najdi kino <font size="+20"><b>'.concat(data[cinemaOrder[level].toString()].name).concat('</b></font>')
@@ -206,6 +204,10 @@ function mapInit() {
   // map.zoomToExtent(extent);
 
   return map
+}
+
+function overwriteSelectedRange() {
+    selectionRange.innerHTML = String(selectionFrom.getFullYear()) + " - " + String(selectionTo.getFullYear())
 }
 
 // Script that removes Open Layers 2 "Prevent Default ..." error. Script occured when zooming in the map.

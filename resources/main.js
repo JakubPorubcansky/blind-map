@@ -36,7 +36,7 @@ const data = {"0" : {name: "Art", imgUrl: "resources/img/Art.jpg", longitude:16.
  "35" : {name: "Vítěz", imgUrl: "", longitude:16.604650218876646, latitude:49.163419723539690, otherNames: ["Kino Adria Horní Heršpice"]}
 }
 
-const numOfLevels = 2
+const numOfLevels = 5
 const numOfCinemas = Object.keys(data).length
 const centerLatLon = new OpenLayers.LonLat(16.608196,49.195047)
 const displayStates = {0:'start', 1:'question', 2:'result', 3:'total'}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://d3js.org/d3.v5.min.js">
+            
+        </script>
+    </head>
+    <body>
+        <!-- <p>Hello!</p> -->
+
+        <div style="width:100%; margin:10px;">
+            <div style="float:left; width:120px;">
+                Sampling rate:
+            </div>  
+            <div style="width: 100%;">
+                <input id="input" type="text" value="" />
+            </div>
+        </div>
+        <div style="width:100%; height:3px;">
+            <hr>
+        </div>
+
+        <div style="width:100%; height:130px; margin:10px;">
+            <div style="width:50%; float:left; padding-right: 20px; height:100%;">
+                <p style="margin-bottom: 10px;">Update when</p>
+                <div style="height:24px;">
+                    <p style="float:left; margin-right:10px;">Weekdays:</p>
+                    Mo
+                    <input type="checkbox" name="wr1" value=""/>
+                    Tu
+                    <input type="checkbox" name="wr1" value=""/>
+                    We
+                    <input type="checkbox" name="wr1" value=""/>
+                    Th
+                    <input type="checkbox" name="wr1" value=""/>
+                    Fr
+                    <input type="checkbox" name="wr1" value=""/>
+                    Sa
+                    <input type="checkbox" name="wr1" value=""/>
+                    Su
+                    <input type="checkbox" name="wr1" value=""/>
+                </div>
+
+                <div>
+                    <div style="height:24px;">
+                        Hours: 
+                        <input style="float:right;" type="text" value=""/>
+                    </div>
+                    <div style="height:24px;">
+                        Minutes: 
+                        <input style="float:right;" type="text" value=""/>
+                    </div>
+                    <div style="height:24px;">
+                        Seconds: 
+                        <input style="float:right;" type="text" value=""/>
+                    </div>
+                </div>
+            </div>
+            <div style="width:50%; float:right; height:100%;">
+                <p style="margin-bottom: 10px;">Update until</p>
+                <div style="height:24px;">
+                    <select style="float:left;">
+                        <option value="sample">Sample</option>
+                        <option value="quarterhour">Quarter Hour</option>
+                        <option value="hour">Hour</option>
+                        <option value="day">Day</option>
+                    </select>
+                    <div style="float:left; padding-left: 40px;">
+                        offset:
+                        <input type="text">
+                    </div>
+                </div>
+                <div style="width:100%; height:24px; position: absolute; bottom: 0; padding-right: 40px;">
+                    <input style="float:right; width:80px;" type="button" value="Submit" onclick="update()">
+                </div>
+            </div>
+
+            <svg style="background-color: khaki" id="infog1" width="500" height="200">
+            </svg>
+        </div>
+
+        
+        <script>
+            function update() {
+                var v = document.getElementById("input").value
+                var samplingRate = 3600;
+                var totalSeconds = 604800;
+                var numSamples = Math.round(totalSeconds/samplingRate)
+               
+                // var svg = d3.select("body")
+                //             .append("svg")
+                //             .attr("width", "100%")
+                //             .attr("height", "100%")
+                //             .call(d3.zoom().on("zoom", function () {
+                //                 svg.attr("transform", d3.event.transform)
+                //             }))
+                //             .append("g")
+                
+
+                // var w = svg1.node().getBoundingClientRect().width
+                // var h = svg1.node().getBoundingClientRect().height
+
+                // var w = 100
+                // var h = 100
+                // var x_padding = 10
+                // var step = (w - 2 * x_padding) / numSamples
+
+                // svg.append("line")
+                //     .attr("x1", (document.body.clientWidth / 2) - 200)
+                //     .attr("y1", h / 2)
+                //     .attr("x2", (document.body.clientWidth / 2) + 200)
+                //     .attr("y2", h / 2)
+                //     .attr("stroke-width", 1)
+                //     .attr("stroke", "black");
+
+                // svg.selectAll("-line")
+                //    .data(d3.range(100))
+                //    .enter().append("line")
+                //    .attr("x1", function(d) { return (document.body.clientWidth / 2) - d;})
+                //    .attr("y1", (h / 2) - 5)
+                //    .attr("x2", function(d) { return (document.body.clientWidth / 2) - d;})
+                //    .attr("y2", (h / 2) + 5)
+                //    .attr("stroke-width", 0.5)
+                //    .attr("stroke", "black");
+                
+
+var svg1 = d3.select("#infog1");
+
+ // dimensions
+ var dims = {
+        width: svg1.node().getBoundingClientRect().width,
+        height: svg1.node().getBoundingClientRect().height,
+        svg_dx: 100,
+        svg_dy: 100
+    };
+
+    // Data
+    var dataPoints = [1, 1010, 1020, 5000];
+
+    // Zoom
+    var zoom = d3.zoom()
+        .extent([[dims.svg_dx, dims.svg_dy], [dims.width-(dims.svg_dx*2), dims.height-dims.svg_dy]])
+        .scaleExtent([1, 10])
+        .translateExtent([[dims.svg_dx, dims.svg_dy], [dims.width-(dims.svg_dx*2), dims.height-dims.svg_dy]])
+        .on('zoom', zoomed);
+
+    var dateArray = d3.timeSeconds(new Date(2011, 1, 1, 0, 0, 0),
+                                   new Date(2011, 1, 1, 0, 2, 0))
+
+    // Scale
+    var xScale = d3.scaleLinear()
+        .domain([0, 5000])
+        .range([dims.svg_dx, dims.width-(dims.svg_dx*2)]);
+
+    // Axis
+    var xAxis = d3.axisTop(xScale)
+
+    // Main svg
+    var gMain = d3.select('body')
+        .append("svg")
+        .attr("width", dims.width)
+        .attr("height", dims.height)
+        .append("g")
+        .attr("transform", "translate(100, 100)");
+
+    var rect = gMain
+        .append("rect")
+        .attr("x", 0)
+        .attr("y", -25)
+        .attr("width", dims.width)
+        .attr("height", 50)
+        .style("fill", "transparent")
+        .call(zoom);
+
+
+    // circles
+    var circles = gMain.selectAll('circle')
+        .data(dataPoints)
+        .enter()
+        .append('circle')
+        .attr('r', 7)
+        .attr('cx', function (d) {
+            return xScale(d);
+        });
+
+    // axis
+    var axis = gMain.append("g")
+
+    // Jump to position (500, 1500) at start
+    startTransition();
+
+
+    function zoomed() {
+        var transform = d3.event.transform;
+
+        // Zoom the circles
+        var xNewScale = transform.rescaleX(xScale);
+        circles
+            .attr("cx", function (d) {
+                return xNewScale(d);
+            });
+
+        // Zoom the axis
+        xAxis.scale(xNewScale);
+        axis.call(xAxis);
+    }
+
+    function startTransition() {
+        // Position to (500, 1500) at start
+        // to jump to [500,1500] we need to calculate a new scale factor (k)...
+        var k = (xScale(5000) - xScale(0)) / (xScale(1500) - xScale(500));
+
+        // ...and then a translate to [500, 0]
+        var tx = dims.svg_dx - (k * xScale(500));
+
+        var t = d3.zoomIdentity.translate(tx, 0).scale(k);
+
+        // Rescale the axis
+        xAxis.scale(t.rescaleX(xScale));
+        axis
+            .attr("transform", "translate(0,-20)")
+            .call(xAxis);
+
+        // Rescale the circles
+        rect.call(zoom.transform, t);
+    }
+
+
+            }
+            
+
+        </script>
+    </body>
+</html>

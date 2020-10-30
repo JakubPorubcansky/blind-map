@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<div id="dataviz_axisZoom"></div>
+
+<script>
+        var width = 400,
+            height = 100;
+    
+        var data = [10, 15, 20, 25, 30];
+        
+        // Append SVG 
+        var svg = d3.select("#dataviz_axisZoom")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+    
+      //   // Create scale
+      //   var scale = d3.scaleLinear()
+      //                 .domain([d3.min(data), d3.max(data)])
+      //                 .range([0, width - 100]);
+        
+        var scale = d3.scalePoint()
+               .domain(["a", "b", "c"])
+               .range([0, width-100]);
+    
+      // Add scales to axis
+      //   var x_axis = d3.axisBottom(scale)
+
+        var x_axis = d3.axisBottom()
+                     //   .scale(d3.scaleTime())
+                     //   .tickFormat(d3.timeFormat("%Y-%m-%d")))
+                     //   .ticks(5)
+                       .ticks(d3.timeMinute, 15);
+    
+        //Append group and insert axis
+        svg.append("g")
+           .attr("class", "axis")
+           .attr("transform", "translate(" + 15 + "," + (height - 20) + ")")
+           .call(x_axis);
+
+    
+    </script>
